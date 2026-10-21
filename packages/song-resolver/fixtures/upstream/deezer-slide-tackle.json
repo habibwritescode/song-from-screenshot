@@ -1,0 +1,46 @@
+{
+    "data": [
+        {
+            "id": 1257797172,
+            "readable": true,
+            "title": "Slide Tackle",
+            "title_short": "Slide Tackle",
+            "title_version": "",
+            "isrc": "USJ5G2022504",
+            "link": "https://www.deezer.com/track/1257797172",
+            "duration": 220,
+            "rank": 312035,
+            "explicit_lyrics": false,
+            "explicit_content_lyrics": 0,
+            "explicit_content_cover": 2,
+            "preview": "https://cdnt-preview.dzcdn.net/api/1/1/a/3/3/0/a33ea55d7e0585456d619bed25e6782a.mp3?hdnea=exp=1792563969~acl=/api/1/1/a/3/3/0/a33ea55d7e0585456d619bed25e6782a.mp3*~data=user_id=0,application_id=42~hmac=99f6c126d4a8141e5f01bb4f36542dedd63178c9b01c92cb8d1631b9c67d659e",
+            "md5_image": "f0d5207d075adb652643a29ae8851e7b",
+            "artist": {
+                "id": 9541274,
+                "name": "Japanese Breakfast",
+                "link": "https://www.deezer.com/artist/9541274",
+                "picture": "https://api.deezer.com/artist/9541274/image",
+                "picture_small": "https://cdn-images.dzcdn.net/images/artist/131fce389393ca49fbe2aa5831f492b6/56x56-000000-80-0-0.jpg",
+                "picture_medium": "https://cdn-images.dzcdn.net/images/artist/131fce389393ca49fbe2aa5831f492b6/250x250-000000-80-0-0.jpg",
+                "picture_big": "https://cdn-images.dzcdn.net/images/artist/131fce389393ca49fbe2aa5831f492b6/500x500-000000-80-0-0.jpg",
+                "picture_xl": "https://cdn-images.dzcdn.net/images/artist/131fce389393ca49fbe2aa5831f492b6/1000x1000-000000-80-0-0.jpg",
+                "tracklist": "https://api.deezer.com/artist/9541274/top?limit=50",
+                "type": "artist"
+            },
+            "album": {
+                "id": 210814152,
+                "title": "Jubilee",
+                "cover": "https://api.deezer.com/album/210814152/image",
+                "cover_small": "https://cdn-images.dzcdn.net/images/cover/f0d5207d075adb652643a29ae8851e7b/56x56-000000-80-0-0.jpg",
+                "cover_medium": "https://cdn-images.dzcdn.net/images/cover/f0d5207d075adb652643a29ae8851e7b/250x250-000000-80-0-0.jpg",
+                "cover_big": "https://cdn-images.dzcdn.net/images/cover/f0d5207d075adb652643a29ae8851e7b/500x500-000000-80-0-0.jpg",
+                "cover_xl": "https://cdn-images.dzcdn.net/images/cover/f0d5207d075adb652643a29ae8851e7b/1000x1000-000000-80-0-0.jpg",
+                "md5_image": "f0d5207d075adb652643a29ae8851e7b",
+                "tracklist": "https://api.deezer.com/album/210814152/tracks",
+                "type": "album"
+            },
+            "type": "track"
+        }
+    ],
+    "total": 1
+}

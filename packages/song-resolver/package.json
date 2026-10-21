@@ -1,0 +1,48 @@
+{
+  "name": "song-resolver",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "test:live": "LIVE=1 vitest run",
+    "setup": "node --experimental-strip-types --disable-warning=ExperimentalWarning scripts/setup.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.137.0",
+    "hono": "^4.13.13"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-plugin": "^1.4.6",
+    "@cloudflare/workers-types": "^5.20261021.1",
+    "@types/node": "^22.20.5",
+    "@vitest/coverage-istanbul": "^5.0.5",
+    "vitest": "^5.0.5",
+    "wrangler": "^4.151.3"
+  },
+  "cloudflare": {
+    "bindings": {
+      "ANTHROPIC_API_KEY": {
+        "description": "Required. Create one at [platform.claude.com](https://platform.claude.com) \u2192 **API keys**."
+      },
+      "ACCESS_TOKEN": {
+        "description": "Required. A long random string your apps send as `Authorization: Bearer <token>`. Generate one with `openssl rand -base64 32` and save it."
+      },
+      "SPOTIFY_CLIENT_ID": {
+        "description": "Recommended, for direct Spotify links. Create an app at [developer.spotify.com/dashboard](https://developer.spotify.com/dashboard) (tick **Web API**) and copy its Client ID. Leave empty to skip."
+      },
+      "SPOTIFY_CLIENT_SECRET": {
+        "description": "The same Spotify app's Client secret. Leave empty to skip."
+      },
+      "YOUTUBE_API_KEY": {
+        "description": "Optional. A YouTube Data API v3 key from the Google Cloud console. Leave empty to skip."
+      },
+      "CACHE": {
+        "description": "KV namespace for cached results; created automatically."
+      }
+    }
+  }
+}

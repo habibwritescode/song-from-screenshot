@@ -1,0 +1,87 @@
+{
+  "tracks": {
+    "href": "https://api.spotify.com/v1/search?offset=0&limit=10&query=track%3A%22EGO%22%20artist%3A%22Naarly%22&type=track&market=US&locale=*",
+    "limit": 10,
+    "next": null,
+    "offset": 0,
+    "previous": null,
+    "total": 1,
+    "items": [
+      {
+        "album": {
+          "album_type": "single",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/4ME20XT9IP5JOpqoIGQ6Js"
+              },
+              "href": "https://api.spotify.com/v1/artists/4ME20XT9IP5JOpqoIGQ6Js",
+              "id": "4ME20XT9IP5JOpqoIGQ6Js",
+              "name": "Naarly",
+              "type": "artist",
+              "uri": "spotify:artist:4ME20XT9IP5JOpqoIGQ6Js"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/1DDUCZnZSp3IuWKZrpRzXu"
+          },
+          "href": "https://api.spotify.com/v1/albums/1DDUCZnZSp3IuWKZrpRzXu",
+          "id": "1DDUCZnZSp3IuWKZrpRzXu",
+          "images": [
+            {
+              "height": 640,
+              "width": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b2737948803e6894b74d4152e8f0"
+            },
+            {
+              "height": 300,
+              "width": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e027948803e6894b74d4152e8f0"
+            },
+            {
+              "height": 64,
+              "width": 64,
+              "url": "https://i.scdn.co/image/ab67616d000048517948803e6894b74d4152e8f0"
+            }
+          ],
+          "is_playable": true,
+          "name": "EGO",
+          "release_date": "2026-10-16",
+          "release_date_precision": "day",
+          "total_tracks": 1,
+          "type": "album",
+          "uri": "spotify:album:1DDUCZnZSp3IuWKZrpRzXu"
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4ME20XT9IP5JOpqoIGQ6Js"
+            },
+            "href": "https://api.spotify.com/v1/artists/4ME20XT9IP5JOpqoIGQ6Js",
+            "id": "4ME20XT9IP5JOpqoIGQ6Js",
+            "name": "Naarly",
+            "type": "artist",
+            "uri": "spotify:artist:4ME20XT9IP5JOpqoIGQ6Js"
+          }
+        ],
+        "disc_number": 1,
+        "duration_ms": 150731,
+        "explicit": false,
+        "external_ids": {
+          "isrc": "QZWDD2611289"
+        },
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/3veGiQJuodUItZWeWyPaXA"
+        },
+        "href": "https://api.spotify.com/v1/tracks/3veGiQJuodUItZWeWyPaXA",
+        "id": "3veGiQJuodUItZWeWyPaXA",
+        "is_local": false,
+        "is_playable": true,
+        "name": "EGO",
+        "track_number": 1,
+        "type": "track",
+        "uri": "spotify:track:3veGiQJuodUItZWeWyPaXA"
+      }
+    ]
+  }
+}

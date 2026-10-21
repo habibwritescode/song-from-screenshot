@@ -1,0 +1,242 @@
+{
+  "kind": "youtube#searchListResponse",
+  "etag": "INBVqHxWCs4lLv-1xiBIIop24AE",
+  "nextPageToken": "CAUQAA",
+  "regionCode": "US",
+  "pageInfo": {
+    "totalResults": 22,
+    "resultsPerPage": 5
+  },
+  "items": [
+    {
+      "kind": "youtube#searchResult",
+      "etag": "OkSQg_sq0Y4tCUGALhTAS6a9bmY",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "V6UdD9XituI"
+      },
+      "snippet": {
+        "publishedAt": "2026-10-16T09:00:38Z",
+        "channelId": "UCd3TI79UTgYvVEq5lTnJ4uQ",
+        "title": "Naarly - EGO",
+        "description": "Naarly - EGO Subscribe and turn on notifications for daily uploads ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/V6UdD9XituI/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/V6UdD9XituI/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/V6UdD9XituI/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/V6UdD9XituI/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/V6UdD9XituI/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "MrRevillz",
+        "liveBroadcastContent": "none",
+        "publishTime": "2026-10-16T09:00:38Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "U1g6qa6-bgdKQbeAMQ9BoIAiRAo",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "MXNiK_WAeJk"
+      },
+      "snippet": {
+        "publishedAt": "2026-10-19T13:15:23Z",
+        "channelId": "UClUo9To__a6DJoD19ToI9_g",
+        "title": "Naarly - EGO (Official Audio)",
+        "description": "LISTEN https://open.spotify.com/track/3veGiQJuodUItZWeWyPaXA?si=9de6cd3ce1f14d1f FOLLOW Naarly ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/MXNiK_WAeJk/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/MXNiK_WAeJk/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/MXNiK_WAeJk/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/MXNiK_WAeJk/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/MXNiK_WAeJk/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          },
+          "fhd": {
+            "url": "https://i.ytimg.com/vi/MXNiK_WAeJk/fhddefault.jpg",
+            "width": 1920,
+            "height": 1080
+          }
+        },
+        "channelTitle": "Engeloop Records",
+        "liveBroadcastContent": "none",
+        "publishTime": "2026-10-19T13:15:23Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "1EYgY1G2Cbc5dROzywBZKSlJENQ",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "dR6FK_sc0e8"
+      },
+      "snippet": {
+        "publishedAt": "2026-10-18T09:13:17Z",
+        "channelId": "UClf43UKcVhXJyuhvy_RIE9Q",
+        "title": "Naarly - EGO #145.0 Trending",
+        "description": "Trending music from charts. Follow for daily updates! Naarly - EGO Chart Position: #145.0 Date: 2026-10-18 #Shorts #Trending ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/dR6FK_sc0e8/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/dR6FK_sc0e8/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/dR6FK_sc0e8/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/dR6FK_sc0e8/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/dR6FK_sc0e8/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Trendo-Finland",
+        "liveBroadcastContent": "none",
+        "publishTime": "2026-10-18T09:13:17Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "ZrJD4qO0vPr6YLLqsQx06Lybm6c",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "W04bZ-r5k6M"
+      },
+      "snippet": {
+        "publishedAt": "2026-08-13T10:03:27Z",
+        "channelId": "UCi9zEgzSUozpOwkVw6vm24Q",
+        "title": "WASTED",
+        "description": "Provided to YouTube by Symphonic Distribution WASTED · Naarly · Major League Djz WASTED ℗ 2026 Engeloop Records ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/W04bZ-r5k6M/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/W04bZ-r5k6M/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/W04bZ-r5k6M/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/W04bZ-r5k6M/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/W04bZ-r5k6M/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Naarly - Topic",
+        "liveBroadcastContent": "none",
+        "publishTime": "2026-08-13T10:03:27Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "dhNasd7XcCDbt60jp1h4M0NC_rQ",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "mjzeeQcrVno"
+      },
+      "snippet": {
+        "publishedAt": "2026-10-06T13:15:11Z",
+        "channelId": "UClUo9To__a6DJoD19ToI9_g",
+        "title": "valdemar, Naarly - GOLD (Official Audio)",
+        "description": "LISTEN https://open.spotify.com/track/4T0q23JRKupWYnEhcZrDxf?si=495ed327acc94acf FOLLOW valdemar ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/mjzeeQcrVno/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/mjzeeQcrVno/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/mjzeeQcrVno/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/mjzeeQcrVno/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/mjzeeQcrVno/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          },
+          "fhd": {
+            "url": "https://i.ytimg.com/vi/mjzeeQcrVno/fhddefault.jpg",
+            "width": 1920,
+            "height": 1080
+          }
+        },
+        "channelTitle": "Engeloop Records",
+        "liveBroadcastContent": "none",
+        "publishTime": "2026-10-06T13:15:11Z"
+      }
+    }
+  ]
+}

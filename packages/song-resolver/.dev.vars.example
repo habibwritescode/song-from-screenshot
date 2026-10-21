@@ -1,0 +1,14 @@
+# Copy to .dev.vars for local dev and fill in. Never commit .dev.vars.
+# For a deployed Worker, run `npm run setup -w song-resolver` instead.
+
+# Required
+ANTHROPIC_API_KEY=
+# A long random string; generate with: openssl rand -base64 32
+ACCESS_TOKEN=
+
+# Recommended: direct Spotify links (developer.spotify.com/dashboard → Create app)
+SPOTIFY_CLIENT_ID=
+SPOTIFY_CLIENT_SECRET=
+
+# Optional
+YOUTUBE_API_KEY=

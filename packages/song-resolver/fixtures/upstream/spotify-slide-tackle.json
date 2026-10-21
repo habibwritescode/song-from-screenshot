@@ -1,0 +1,87 @@
+{
+  "tracks": {
+    "href": "https://api.spotify.com/v1/search?offset=0&limit=10&query=track%3A%22Slide%20Tackle%22%20artist%3A%22Japanese%20Breakfast%22&type=track&market=US&locale=*",
+    "limit": 10,
+    "next": null,
+    "offset": 0,
+    "previous": null,
+    "total": 1,
+    "items": [
+      {
+        "album": {
+          "album_type": "album",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/7MoIc5s9KXolCBH1fy9kkw"
+              },
+              "href": "https://api.spotify.com/v1/artists/7MoIc5s9KXolCBH1fy9kkw",
+              "id": "7MoIc5s9KXolCBH1fy9kkw",
+              "name": "Japanese Breakfast",
+              "type": "artist",
+              "uri": "spotify:artist:7MoIc5s9KXolCBH1fy9kkw"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/1uD1kdwTWH1DZQZqGKz6rY"
+          },
+          "href": "https://api.spotify.com/v1/albums/1uD1kdwTWH1DZQZqGKz6rY",
+          "id": "1uD1kdwTWH1DZQZqGKz6rY",
+          "images": [
+            {
+              "height": 640,
+              "width": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273e58724521fe7e84276b4c373"
+            },
+            {
+              "height": 300,
+              "width": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02e58724521fe7e84276b4c373"
+            },
+            {
+              "height": 64,
+              "width": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851e58724521fe7e84276b4c373"
+            }
+          ],
+          "is_playable": true,
+          "name": "Jubilee",
+          "release_date": "2021-06-04",
+          "release_date_precision": "day",
+          "total_tracks": 10,
+          "type": "album",
+          "uri": "spotify:album:1uD1kdwTWH1DZQZqGKz6rY"
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/7MoIc5s9KXolCBH1fy9kkw"
+            },
+            "href": "https://api.spotify.com/v1/artists/7MoIc5s9KXolCBH1fy9kkw",
+            "id": "7MoIc5s9KXolCBH1fy9kkw",
+            "name": "Japanese Breakfast",
+            "type": "artist",
+            "uri": "spotify:artist:7MoIc5s9KXolCBH1fy9kkw"
+          }
+        ],
+        "disc_number": 1,
+        "duration_ms": 219782,
+        "explicit": false,
+        "external_ids": {
+          "isrc": "USJ5G2022504"
+        },
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/5ksM8r8u4AjMwvtqUif9W1"
+        },
+        "href": "https://api.spotify.com/v1/tracks/5ksM8r8u4AjMwvtqUif9W1",
+        "id": "5ksM8r8u4AjMwvtqUif9W1",
+        "is_local": false,
+        "is_playable": true,
+        "name": "Slide Tackle",
+        "track_number": 4,
+        "type": "track",
+        "uri": "spotify:track:5ksM8r8u4AjMwvtqUif9W1"
+      }
+    ]
+  }
+}

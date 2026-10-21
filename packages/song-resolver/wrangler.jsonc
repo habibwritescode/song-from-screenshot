@@ -1,0 +1,13 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "song-resolver",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "kv_namespaces": [{ "binding": "CACHE" }],
+  "vars": {
+    "MODEL": "claude-haiku-5-5",
+    "FALLBACK_MODEL": "claude-sonnet-5-5",
+    "COUNTRY": "US",
+  },
+}

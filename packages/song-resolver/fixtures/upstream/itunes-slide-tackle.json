@@ -1,0 +1,38 @@
+{
+    "resultCount": 1,
+    "results": [
+        {
+            "wrapperType": "track",
+            "kind": "song",
+            "artistId": 1068874811,
+            "collectionId": 1553364590,
+            "trackId": 1553364595,
+            "artistName": "Japanese Breakfast",
+            "collectionName": "Jubilee",
+            "trackName": "Slide Tackle",
+            "collectionCensoredName": "Jubilee",
+            "trackCensoredName": "Slide Tackle",
+            "artistViewUrl": "https://music.apple.com/us/artist/japanese-breakfast/1068874811?uo=4",
+            "collectionViewUrl": "https://music.apple.com/us/album/slide-tackle/1553364590?i=1553364595&uo=4",
+            "trackViewUrl": "https://music.apple.com/us/album/slide-tackle/1553364590?i=1553364595&uo=4",
+            "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/77/09/53/770953b7-b63e-22d8-19cc-cd6bdcad21c5/mzaf_6487901369635949710.plus.aac.p.m4a",
+            "artworkUrl30": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/93/8b/8b/938b8b5d-1022-414f-995e-a25608fc68c3/17251.jpg/30x30bb.jpg",
+            "artworkUrl60": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/93/8b/8b/938b8b5d-1022-414f-995e-a25608fc68c3/17251.jpg/60x60bb.jpg",
+            "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/93/8b/8b/938b8b5d-1022-414f-995e-a25608fc68c3/17251.jpg/100x100bb.jpg",
+            "collectionPrice": 9.99,
+            "trackPrice": 1.29,
+            "releaseDate": "2021-06-04T12:00:00Z",
+            "collectionExplicitness": "notExplicit",
+            "trackExplicitness": "notExplicit",
+            "discCount": 1,
+            "discNumber": 1,
+            "trackCount": 10,
+            "trackNumber": 4,
+            "trackTimeMillis": 219783,
+            "country": "USA",
+            "currency": "USD",
+            "primaryGenreName": "Alternative",
+            "isStreamable": true
+        }
+    ]
+}

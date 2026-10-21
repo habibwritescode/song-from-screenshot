@@ -1,0 +1,232 @@
+{
+  "kind": "youtube#searchListResponse",
+  "etag": "xEBXSql_JOGJVkx2JcEbxqN1rXQ",
+  "nextPageToken": "CAUQAA",
+  "regionCode": "US",
+  "pageInfo": {
+    "totalResults": 4526,
+    "resultsPerPage": 5
+  },
+  "items": [
+    {
+      "kind": "youtube#searchResult",
+      "etag": "P7yQ4mWnrhsxFySudA4Ncc6S6wI",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "0-EMiEpXLJg"
+      },
+      "snippet": {
+        "publishedAt": "2021-06-03T10:02:12Z",
+        "channelId": "UCYgfTCJgqA23D29kxRIRgLQ",
+        "title": "Slide Tackle",
+        "description": "Provided to YouTube by BWSCD Inc Slide Tackle · Japanese Breakfast Jubilee ℗ 2021 Dead Oceans Released on: 2021-06-04 ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/0-EMiEpXLJg/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/0-EMiEpXLJg/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/0-EMiEpXLJg/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/0-EMiEpXLJg/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/0-EMiEpXLJg/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Japanese Breakfast - Topic",
+        "liveBroadcastContent": "none",
+        "publishTime": "2021-06-03T10:02:12Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "Zrq0O2CD3-vRiym5C2XTNGFm7-Q",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "0z3-9FR68Qw"
+      },
+      "snippet": {
+        "publishedAt": "2021-10-13T16:00:01Z",
+        "channelId": "UCkSXBywAklNj27SxW7iQNPg",
+        "title": "Japanese Breakfast - Slide Tackle",
+        "description": "Japanese Breakfast plays \"Slide Tackle\" live from Richmond's In Your Ear studios for a WNRN In Studio Session. Watch the band ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/0z3-9FR68Qw/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/0z3-9FR68Qw/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/0z3-9FR68Qw/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/0z3-9FR68Qw/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/0z3-9FR68Qw/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "WNRN",
+        "liveBroadcastContent": "none",
+        "publishTime": "2021-10-13T16:00:01Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "1Z4yZL625yzSGNNrNct2QlGe5PU",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "87Ln7NlataI"
+      },
+      "snippet": {
+        "publishedAt": "2021-06-04T03:14:47Z",
+        "channelId": "UCNYJOAz1J80HEJy2HSM772Q",
+        "title": "Japanese Breakfast - Slide Tackle",
+        "description": "Japanese Breakfast's new album 'Jubilee', out June 4th on Dead Oceans. STREAM/BUY: https://japanesebreakfast.ffm.to/jubilee​ ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/87Ln7NlataI/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/87Ln7NlataI/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/87Ln7NlataI/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/87Ln7NlataI/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/87Ln7NlataI/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "David Dean Burkhart",
+        "liveBroadcastContent": "none",
+        "publishTime": "2021-06-04T03:14:47Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "8T1WZSExK72zekIZb-UW7xgIRWA",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "fOoj-hCa-xU"
+      },
+      "snippet": {
+        "publishedAt": "2021-06-03T19:48:18Z",
+        "channelId": "UCuOhqyLuZSWOaC3RiXteAyA",
+        "title": "Japanese breakfast - Slide Tackle (Lyrics)",
+        "description": "Japanese breakfast, Slide Tackle, Japanese breakfast Slide Tackle, Slide Tackle Japanese breakfast, lyrics Slide Tackle, Slide ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/fOoj-hCa-xU/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/fOoj-hCa-xU/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/fOoj-hCa-xU/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/fOoj-hCa-xU/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/fOoj-hCa-xU/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Enter Music",
+        "liveBroadcastContent": "none",
+        "publishTime": "2021-06-03T19:48:18Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "gXWKkuqkqXDmBKQ6F429LDjjUh0",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "Hf9YOj6gTZY"
+      },
+      "snippet": {
+        "publishedAt": "2021-11-27T19:31:30Z",
+        "channelId": "UCRhernWxjlEWxWU08_DsqHQ",
+        "title": "Japanese Breakfast, Slide Tackle (live), UC Theatre, Berkeley, CA, November 7, 2021 (4K)",
+        "description": "Japanese Breakfast play their song \"Slide Tackle\" live in concert before a sold-out crowd at the UC Theatre in Berkeley, California ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/Hf9YOj6gTZY/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/Hf9YOj6gTZY/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/Hf9YOj6gTZY/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/Hf9YOj6gTZY/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/Hf9YOj6gTZY/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Tim Bracken",
+        "liveBroadcastContent": "none",
+        "publishTime": "2021-11-27T19:31:30Z"
+      }
+    }
+  ]
+}

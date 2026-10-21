@@ -1,0 +1,657 @@
+{
+  "tracks": {
+    "href": "https://api.spotify.com/v1/search?offset=0&limit=10&query=track%3A%22FE%21N%22%20artist%3A%22Travis%20Scott%22&type=track&market=US&locale=*",
+    "limit": 10,
+    "next": null,
+    "offset": 0,
+    "previous": null,
+    "total": 7,
+    "items": [
+      {
+        "album": {
+          "album_type": "album",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/0Y5tJX1MQlPlqiwlOH1tJY"
+              },
+              "href": "https://api.spotify.com/v1/artists/0Y5tJX1MQlPlqiwlOH1tJY",
+              "id": "0Y5tJX1MQlPlqiwlOH1tJY",
+              "name": "Travis Scott",
+              "type": "artist",
+              "uri": "spotify:artist:0Y5tJX1MQlPlqiwlOH1tJY"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/18NOKLkZETa4sWwLMIm0UZ"
+          },
+          "href": "https://api.spotify.com/v1/albums/18NOKLkZETa4sWwLMIm0UZ",
+          "id": "18NOKLkZETa4sWwLMIm0UZ",
+          "images": [
+            {
+              "height": 640,
+              "width": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b27304481c826dd292e5e4983b3f"
+            },
+            {
+              "height": 300,
+              "width": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e0204481c826dd292e5e4983b3f"
+            },
+            {
+              "height": 64,
+              "width": 64,
+              "url": "https://i.scdn.co/image/ab67616d0000485104481c826dd292e5e4983b3f"
+            }
+          ],
+          "is_playable": true,
+          "name": "UTOPIA",
+          "release_date": "2023-07-28",
+          "release_date_precision": "day",
+          "total_tracks": 19,
+          "type": "album",
+          "uri": "spotify:album:18NOKLkZETa4sWwLMIm0UZ"
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0Y5tJX1MQlPlqiwlOH1tJY"
+            },
+            "href": "https://api.spotify.com/v1/artists/0Y5tJX1MQlPlqiwlOH1tJY",
+            "id": "0Y5tJX1MQlPlqiwlOH1tJY",
+            "name": "Travis Scott",
+            "type": "artist",
+            "uri": "spotify:artist:0Y5tJX1MQlPlqiwlOH1tJY"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/699OTQXzgjhIYAHMy9RyPD"
+            },
+            "href": "https://api.spotify.com/v1/artists/699OTQXzgjhIYAHMy9RyPD",
+            "id": "699OTQXzgjhIYAHMy9RyPD",
+            "name": "Playboi Carti",
+            "type": "artist",
+            "uri": "spotify:artist:699OTQXzgjhIYAHMy9RyPD"
+          }
+        ],
+        "disc_number": 1,
+        "duration_ms": 191700,
+        "explicit": true,
+        "external_ids": {
+          "isrc": "USSM12305010"
+        },
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/42VsgItocQwOQC3XWZ8JNA"
+        },
+        "href": "https://api.spotify.com/v1/tracks/42VsgItocQwOQC3XWZ8JNA",
+        "id": "42VsgItocQwOQC3XWZ8JNA",
+        "is_local": false,
+        "is_playable": true,
+        "name": "FE!N (feat. Playboi Carti)",
+        "track_number": 8,
+        "type": "track",
+        "uri": "spotify:track:42VsgItocQwOQC3XWZ8JNA"
+      },
+      {
+        "album": {
+          "album_type": "album",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/0Y5tJX1MQlPlqiwlOH1tJY"
+              },
+              "href": "https://api.spotify.com/v1/artists/0Y5tJX1MQlPlqiwlOH1tJY",
+              "id": "0Y5tJX1MQlPlqiwlOH1tJY",
+              "name": "Travis Scott",
+              "type": "artist",
+              "uri": "spotify:artist:0Y5tJX1MQlPlqiwlOH1tJY"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/6mpTzL80F11TaeU79loRyJ"
+          },
+          "href": "https://api.spotify.com/v1/albums/6mpTzL80F11TaeU79loRyJ",
+          "id": "6mpTzL80F11TaeU79loRyJ",
+          "images": [
+            {
+              "height": 640,
+              "width": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273ff0491ff31fb3c2619f93f47"
+            },
+            {
+              "height": 300,
+              "width": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02ff0491ff31fb3c2619f93f47"
+            },
+            {
+              "height": 64,
+              "width": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851ff0491ff31fb3c2619f93f47"
+            }
+          ],
+          "is_playable": true,
+          "name": "UTOPIA",
+          "release_date": "2023-07-26",
+          "release_date_precision": "day",
+          "total_tracks": 19,
+          "type": "album",
+          "uri": "spotify:album:6mpTzL80F11TaeU79loRyJ"
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0Y5tJX1MQlPlqiwlOH1tJY"
+            },
+            "href": "https://api.spotify.com/v1/artists/0Y5tJX1MQlPlqiwlOH1tJY",
+            "id": "0Y5tJX1MQlPlqiwlOH1tJY",
+            "name": "Travis Scott",
+            "type": "artist",
+            "uri": "spotify:artist:0Y5tJX1MQlPlqiwlOH1tJY"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/699OTQXzgjhIYAHMy9RyPD"
+            },
+            "href": "https://api.spotify.com/v1/artists/699OTQXzgjhIYAHMy9RyPD",
+            "id": "699OTQXzgjhIYAHMy9RyPD",
+            "name": "Playboi Carti",
+            "type": "artist",
+            "uri": "spotify:artist:699OTQXzgjhIYAHMy9RyPD"
+          }
+        ],
+        "disc_number": 1,
+        "duration_ms": 191702,
+        "explicit": false,
+        "external_ids": {
+          "isrc": "USSM12305823"
+        },
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/3KEMjT3QVfKIl4E9DIcrmF"
+        },
+        "href": "https://api.spotify.com/v1/tracks/3KEMjT3QVfKIl4E9DIcrmF",
+        "id": "3KEMjT3QVfKIl4E9DIcrmF",
+        "is_local": false,
+        "is_playable": true,
+        "name": "FE!N (feat. Playboi Carti)",
+        "track_number": 8,
+        "type": "track",
+        "uri": "spotify:track:3KEMjT3QVfKIl4E9DIcrmF"
+      },
+      {
+        "album": {
+          "album_type": "album",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/0Y5tJX1MQlPlqiwlOH1tJY"
+              },
+              "href": "https://api.spotify.com/v1/artists/0Y5tJX1MQlPlqiwlOH1tJY",
+              "id": "0Y5tJX1MQlPlqiwlOH1tJY",
+              "name": "Travis Scott",
+              "type": "artist",
+              "uri": "spotify:artist:0Y5tJX1MQlPlqiwlOH1tJY"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/4PWBTB6NYSKQwfo79I3prg"
+          },
+          "href": "https://api.spotify.com/v1/albums/4PWBTB6NYSKQwfo79I3prg",
+          "id": "4PWBTB6NYSKQwfo79I3prg",
+          "images": [
+            {
+              "height": 640,
+              "width": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273d3b5affd8824b4ed301b7137"
+            },
+            {
+              "height": 300,
+              "width": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02d3b5affd8824b4ed301b7137"
+            },
+            {
+              "height": 64,
+              "width": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851d3b5affd8824b4ed301b7137"
+            }
+          ],
+          "is_playable": true,
+          "name": "Rodeo",
+          "release_date": "2015-09-04",
+          "release_date_precision": "day",
+          "total_tracks": 16,
+          "type": "album",
+          "uri": "spotify:album:4PWBTB6NYSKQwfo79I3prg"
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0Y5tJX1MQlPlqiwlOH1tJY"
+            },
+            "href": "https://api.spotify.com/v1/artists/0Y5tJX1MQlPlqiwlOH1tJY",
+            "id": "0Y5tJX1MQlPlqiwlOH1tJY",
+            "name": "Travis Scott",
+            "type": "artist",
+            "uri": "spotify:artist:0Y5tJX1MQlPlqiwlOH1tJY"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/1zNqQNIdeOUZHb8zbZRFMX"
+            },
+            "href": "https://api.spotify.com/v1/artists/1zNqQNIdeOUZHb8zbZRFMX",
+            "id": "1zNqQNIdeOUZHb8zbZRFMX",
+            "name": "Swae Lee",
+            "type": "artist",
+            "uri": "spotify:artist:1zNqQNIdeOUZHb8zbZRFMX"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/15iVAtD3s3FsQR4w1v6M0P"
+            },
+            "href": "https://api.spotify.com/v1/artists/15iVAtD3s3FsQR4w1v6M0P",
+            "id": "15iVAtD3s3FsQR4w1v6M0P",
+            "name": "Chief Keef",
+            "type": "artist",
+            "uri": "spotify:artist:15iVAtD3s3FsQR4w1v6M0P"
+          }
+        ],
+        "disc_number": 1,
+        "duration_ms": 321560,
+        "explicit": true,
+        "external_ids": {
+          "isrc": "USSM11506733"
+        },
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/3xby7fOyqmeON8jsnom0AT"
+        },
+        "href": "https://api.spotify.com/v1/tracks/3xby7fOyqmeON8jsnom0AT",
+        "id": "3xby7fOyqmeON8jsnom0AT",
+        "is_local": false,
+        "is_playable": true,
+        "name": "Nightcrawler (feat. Swae Lee & Chief Keef)",
+        "track_number": 7,
+        "type": "track",
+        "uri": "spotify:track:3xby7fOyqmeON8jsnom0AT"
+      },
+      {
+        "album": {
+          "album_type": "album",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/0Y5tJX1MQlPlqiwlOH1tJY"
+              },
+              "href": "https://api.spotify.com/v1/artists/0Y5tJX1MQlPlqiwlOH1tJY",
+              "id": "0Y5tJX1MQlPlqiwlOH1tJY",
+              "name": "Travis Scott",
+              "type": "artist",
+              "uri": "spotify:artist:0Y5tJX1MQlPlqiwlOH1tJY"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/18NOKLkZETa4sWwLMIm0UZ"
+          },
+          "href": "https://api.spotify.com/v1/albums/18NOKLkZETa4sWwLMIm0UZ",
+          "id": "18NOKLkZETa4sWwLMIm0UZ",
+          "images": [
+            {
+              "height": 640,
+              "width": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b27304481c826dd292e5e4983b3f"
+            },
+            {
+              "height": 300,
+              "width": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e0204481c826dd292e5e4983b3f"
+            },
+            {
+              "height": 64,
+              "width": 64,
+              "url": "https://i.scdn.co/image/ab67616d0000485104481c826dd292e5e4983b3f"
+            }
+          ],
+          "is_playable": true,
+          "name": "UTOPIA",
+          "release_date": "2023-07-28",
+          "release_date_precision": "day",
+          "total_tracks": 19,
+          "type": "album",
+          "uri": "spotify:album:18NOKLkZETa4sWwLMIm0UZ"
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0Y5tJX1MQlPlqiwlOH1tJY"
+            },
+            "href": "https://api.spotify.com/v1/artists/0Y5tJX1MQlPlqiwlOH1tJY",
+            "id": "0Y5tJX1MQlPlqiwlOH1tJY",
+            "name": "Travis Scott",
+            "type": "artist",
+            "uri": "spotify:artist:0Y5tJX1MQlPlqiwlOH1tJY"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/53KwLdlmrlCelAZMaLVZqU"
+            },
+            "href": "https://api.spotify.com/v1/artists/53KwLdlmrlCelAZMaLVZqU",
+            "id": "53KwLdlmrlCelAZMaLVZqU",
+            "name": "James Blake",
+            "type": "artist",
+            "uri": "spotify:artist:53KwLdlmrlCelAZMaLVZqU"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/1URnnhqYAYcrqrcwql10ft"
+            },
+            "href": "https://api.spotify.com/v1/artists/1URnnhqYAYcrqrcwql10ft",
+            "id": "1URnnhqYAYcrqrcwql10ft",
+            "name": "21 Savage",
+            "type": "artist",
+            "uri": "spotify:artist:1URnnhqYAYcrqrcwql10ft"
+          }
+        ],
+        "disc_number": 1,
+        "duration_ms": 314836,
+        "explicit": true,
+        "external_ids": {
+          "isrc": "USSM12305020"
+        },
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/76gcXhY3Zv6wW0BTe9nHJo"
+        },
+        "href": "https://api.spotify.com/v1/tracks/76gcXhY3Zv6wW0BTe9nHJo",
+        "id": "76gcXhY3Zv6wW0BTe9nHJo",
+        "is_local": false,
+        "is_playable": true,
+        "name": "TIL FURTHER NOTICE (feat. James Blake & 21 Savage)",
+        "track_number": 19,
+        "type": "track",
+        "uri": "spotify:track:76gcXhY3Zv6wW0BTe9nHJo"
+      },
+      {
+        "album": {
+          "album_type": "album",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/50co4Is1HCEo8bhOyUWKpn"
+              },
+              "href": "https://api.spotify.com/v1/artists/50co4Is1HCEo8bhOyUWKpn",
+              "id": "50co4Is1HCEo8bhOyUWKpn",
+              "name": "Young Thug",
+              "type": "artist",
+              "uri": "spotify:artist:50co4Is1HCEo8bhOyUWKpn"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/24jAbLMFzCTlIv3kQ94HwK"
+          },
+          "href": "https://api.spotify.com/v1/albums/24jAbLMFzCTlIv3kQ94HwK",
+          "id": "24jAbLMFzCTlIv3kQ94HwK",
+          "images": [
+            {
+              "height": 640,
+              "width": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273caca74e1aa8e32cd44bb5c8f"
+            },
+            {
+              "height": 300,
+              "width": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02caca74e1aa8e32cd44bb5c8f"
+            },
+            {
+              "height": 64,
+              "width": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851caca74e1aa8e32cd44bb5c8f"
+            }
+          ],
+          "is_playable": true,
+          "name": "So Much Fun (Deluxe)",
+          "release_date": "2019-12-20",
+          "release_date_precision": "day",
+          "total_tracks": 24,
+          "type": "album",
+          "uri": "spotify:album:24jAbLMFzCTlIv3kQ94HwK"
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/50co4Is1HCEo8bhOyUWKpn"
+            },
+            "href": "https://api.spotify.com/v1/artists/50co4Is1HCEo8bhOyUWKpn",
+            "id": "50co4Is1HCEo8bhOyUWKpn",
+            "name": "Young Thug",
+            "type": "artist",
+            "uri": "spotify:artist:50co4Is1HCEo8bhOyUWKpn"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0Y5tJX1MQlPlqiwlOH1tJY"
+            },
+            "href": "https://api.spotify.com/v1/artists/0Y5tJX1MQlPlqiwlOH1tJY",
+            "id": "0Y5tJX1MQlPlqiwlOH1tJY",
+            "name": "Travis Scott",
+            "type": "artist",
+            "uri": "spotify:artist:0Y5tJX1MQlPlqiwlOH1tJY"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/2hlmm7s2ICUX0LVIhVFlZQ"
+            },
+            "href": "https://api.spotify.com/v1/artists/2hlmm7s2ICUX0LVIhVFlZQ",
+            "id": "2hlmm7s2ICUX0LVIhVFlZQ",
+            "name": "Gunna",
+            "type": "artist",
+            "uri": "spotify:artist:2hlmm7s2ICUX0LVIhVFlZQ"
+          }
+        ],
+        "disc_number": 1,
+        "duration_ms": 279906,
+        "explicit": true,
+        "external_ids": {
+          "isrc": "USAT21906512"
+        },
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/4ea9w8c4ROqiZpJVhfBA3m"
+        },
+        "href": "https://api.spotify.com/v1/tracks/4ea9w8c4ROqiZpJVhfBA3m",
+        "id": "4ea9w8c4ROqiZpJVhfBA3m",
+        "is_local": false,
+        "is_playable": true,
+        "name": "Hot (Remix) [feat. Gunna and Travis Scott]",
+        "track_number": 5,
+        "type": "track",
+        "uri": "spotify:track:4ea9w8c4ROqiZpJVhfBA3m"
+      },
+      {
+        "album": {
+          "album_type": "single",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/0Y5tJX1MQlPlqiwlOH1tJY"
+              },
+              "href": "https://api.spotify.com/v1/artists/0Y5tJX1MQlPlqiwlOH1tJY",
+              "id": "0Y5tJX1MQlPlqiwlOH1tJY",
+              "name": "Travis Scott",
+              "type": "artist",
+              "uri": "spotify:artist:0Y5tJX1MQlPlqiwlOH1tJY"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/2cMVIRpseAO7fJAxNfg6rD"
+              },
+              "href": "https://api.spotify.com/v1/artists/2cMVIRpseAO7fJAxNfg6rD",
+              "id": "2cMVIRpseAO7fJAxNfg6rD",
+              "name": "CHASE B",
+              "type": "artist",
+              "uri": "spotify:artist:2cMVIRpseAO7fJAxNfg6rD"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/3PgQ3tZpZH8gZm9PEmSlJA"
+          },
+          "href": "https://api.spotify.com/v1/albums/3PgQ3tZpZH8gZm9PEmSlJA",
+          "id": "3PgQ3tZpZH8gZm9PEmSlJA",
+          "images": [
+            {
+              "height": 640,
+              "width": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b2734f5b352052edf8d4204d9666"
+            },
+            {
+              "height": 300,
+              "width": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e024f5b352052edf8d4204d9666"
+            },
+            {
+              "height": 64,
+              "width": 64,
+              "url": "https://i.scdn.co/image/ab67616d000048514f5b352052edf8d4204d9666"
+            }
+          ],
+          "is_playable": true,
+          "name": "FE!N (CHASE B REMIX)",
+          "release_date": "2024-04-19",
+          "release_date_precision": "day",
+          "total_tracks": 1,
+          "type": "album",
+          "uri": "spotify:album:3PgQ3tZpZH8gZm9PEmSlJA"
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0Y5tJX1MQlPlqiwlOH1tJY"
+            },
+            "href": "https://api.spotify.com/v1/artists/0Y5tJX1MQlPlqiwlOH1tJY",
+            "id": "0Y5tJX1MQlPlqiwlOH1tJY",
+            "name": "Travis Scott",
+            "type": "artist",
+            "uri": "spotify:artist:0Y5tJX1MQlPlqiwlOH1tJY"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/2cMVIRpseAO7fJAxNfg6rD"
+            },
+            "href": "https://api.spotify.com/v1/artists/2cMVIRpseAO7fJAxNfg6rD",
+            "id": "2cMVIRpseAO7fJAxNfg6rD",
+            "name": "CHASE B",
+            "type": "artist",
+            "uri": "spotify:artist:2cMVIRpseAO7fJAxNfg6rD"
+          }
+        ],
+        "disc_number": 1,
+        "duration_ms": 276096,
+        "explicit": true,
+        "external_ids": {
+          "isrc": "USSM12403173"
+        },
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/6sFriHsWdq31GcaHdgFHoY"
+        },
+        "href": "https://api.spotify.com/v1/tracks/6sFriHsWdq31GcaHdgFHoY",
+        "id": "6sFriHsWdq31GcaHdgFHoY",
+        "is_local": false,
+        "is_playable": true,
+        "name": "FE!N - CHASE B REMIX",
+        "track_number": 1,
+        "type": "track",
+        "uri": "spotify:track:6sFriHsWdq31GcaHdgFHoY"
+      },
+      {
+        "album": {
+          "album_type": "album",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/7rkW85dBwwrJtlHRDkJDAC"
+              },
+              "href": "https://api.spotify.com/v1/artists/7rkW85dBwwrJtlHRDkJDAC",
+              "id": "7rkW85dBwwrJtlHRDkJDAC",
+              "name": "NAV",
+              "type": "artist",
+              "uri": "spotify:artist:7rkW85dBwwrJtlHRDkJDAC"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/29NWnawJBetVB3lOM9Sbp6"
+          },
+          "href": "https://api.spotify.com/v1/albums/29NWnawJBetVB3lOM9Sbp6",
+          "id": "29NWnawJBetVB3lOM9Sbp6",
+          "images": [
+            {
+              "height": 640,
+              "width": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b2737da6f8edfd0404b5c52de3eb"
+            },
+            {
+              "height": 300,
+              "width": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e027da6f8edfd0404b5c52de3eb"
+            },
+            {
+              "height": 64,
+              "width": 64,
+              "url": "https://i.scdn.co/image/ab67616d000048517da6f8edfd0404b5c52de3eb"
+            }
+          ],
+          "is_playable": true,
+          "name": "Demons Protected By Angels",
+          "release_date": "2022-09-09",
+          "release_date_precision": "day",
+          "total_tracks": 19,
+          "type": "album",
+          "uri": "spotify:album:29NWnawJBetVB3lOM9Sbp6"
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/7rkW85dBwwrJtlHRDkJDAC"
+            },
+            "href": "https://api.spotify.com/v1/artists/7rkW85dBwwrJtlHRDkJDAC",
+            "id": "7rkW85dBwwrJtlHRDkJDAC",
+            "name": "NAV",
+            "type": "artist",
+            "uri": "spotify:artist:7rkW85dBwwrJtlHRDkJDAC"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/5f7VJjfbwm532GiveGC0ZK"
+            },
+            "href": "https://api.spotify.com/v1/artists/5f7VJjfbwm532GiveGC0ZK",
+            "id": "5f7VJjfbwm532GiveGC0ZK",
+            "name": "Lil Baby",
+            "type": "artist",
+            "uri": "spotify:artist:5f7VJjfbwm532GiveGC0ZK"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0Y5tJX1MQlPlqiwlOH1tJY"
+            },
+            "href": "https://api.spotify.com/v1/artists/0Y5tJX1MQlPlqiwlOH1tJY",
+            "id": "0Y5tJX1MQlPlqiwlOH1tJY",
+            "name": "Travis Scott",
+            "type": "artist",
+            "uri": "spotify:artist:0Y5tJX1MQlPlqiwlOH1tJY"
+          }
+        ],
+        "disc_number": 1,
+        "duration_ms": 185785,
+        "explicit": true,
+        "external_ids": {
+          "isrc": "USUM72214489"
+        },
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/5cx2X3RlGDk6g4DkPq4NYw"
+        },
+        "href": "https://api.spotify.com/v1/tracks/5cx2X3RlGDk6g4DkPq4NYw",
+        "id": "5cx2X3RlGDk6g4DkPq4NYw",
+        "is_local": false,
+        "is_playable": true,
+        "name": "Never Sleep (with Lil Baby feat. Travis Scott)",
+        "track_number": 4,
+        "type": "track",
+        "uri": "spotify:track:5cx2X3RlGDk6g4DkPq4NYw"
+      }
+    ]
+  }
+}

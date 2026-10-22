@@ -1,0 +1,19 @@
+{
+  "name": "chrome-extension",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node --experimental-strip-types --disable-warning=ExperimentalWarning build.ts",
+    "dev": "node --experimental-strip-types --disable-warning=ExperimentalWarning build.ts --watch",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.3.6",
+    "esbuild": "^0.28.2",
+    "happy-dom": "^21.0.4",
+    "song-resolver": "*",
+    "vitest": "^5.0.5"
+  }
+}

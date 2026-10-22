@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Song from Screenshot: settings</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #fafafa;
+        --surface: #fff;
+        --text: #18181b;
+        --muted: #71717a;
+        --border: #d4d4d8;
+        --accent: #18181b;
+        --accent-text: #fff;
+        --ok: #15803d;
+        --bad: #b91c1c;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #09090b;
+          --surface: #18181b;
+          --text: #fafafa;
+          --muted: #a1a1aa;
+          --border: #3f3f46;
+          --accent: #facc15;
+          --accent-text: #18181b;
+          --ok: #4ade80;
+          --bad: #f87171;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font:
+          15px/1.5 system-ui,
+          sans-serif;
+      }
+      main {
+        max-width: 520px;
+        margin: 48px auto;
+        padding: 0 16px;
+      }
+      h1 {
+        font-size: 22px;
+        margin: 0 0 4px;
+      }
+      .lede {
+        color: var(--muted);
+        margin: 0 0 28px;
+      }
+      form {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+        display: grid;
+        gap: 20px;
+      }
+      label {
+        display: grid;
+        gap: 6px;
+        font-weight: 600;
+      }
+      .hint {
+        font-weight: 400;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      input[type="url"],
+      input[type="password"],
+      input[type="text"],
+      select {
+        font: inherit;
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--bg);
+        color: var(--text);
+        width: 100%;
+      }
+      input[aria-invalid="true"] {
+        border-color: var(--bad);
+      }
+      .row {
+        display: flex;
+        gap: 8px;
+      }
+      .check {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        font-weight: 600;
+      }
+      .error {
+        color: var(--bad);
+        font-weight: 400;
+        font-size: 13px;
+        min-height: 1em;
+      }
+      .actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      button {
+        font: inherit;
+        font-weight: 600;
+        padding: 8px 16px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--text);
+        cursor: pointer;
+      }
+      button.primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--accent-text);
+      }
+      button:disabled {
+        opacity: 0.6;
+        cursor: progress;
+      }
+      #saved {
+        color: var(--ok);
+        font-size: 13px;
+      }
+      #checks {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 4px;
+        font-size: 14px;
+      }
+      #checks .ok::before {
+        content: "✓ ";
+        color: var(--ok);
+      }
+      #checks .bad::before {
+        content: "✕ ";
+        color: var(--bad);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Song from Screenshot</h1>
+      <p class="lede">
+        Connect the extension to your own song-resolver Worker.
+      </p>
+      <form id="form" novalidate>
+        <label>
+          Worker URL
+          <span class="hint"
+            >For example https://song-resolver.you.workers.dev</span
+          >
+          <input
+            id="workerUrl"
+            type="url"
+            autocomplete="off"
+            spellcheck="false"
+            required
+          />
+          <span id="urlError" class="error" role="alert"></span>
+        </label>
+        <label>
+          Access token
+          <span class="hint"
+            >The token setup printed, or the one you entered on the Deploy
+            form.</span
+          >
+          <span class="row">
+            <input
+              id="token"
+              type="password"
+              autocomplete="off"
+              spellcheck="false"
+              required
+            />
+            <button id="reveal" type="button" aria-pressed="false">Show</button>
+          </span>
+          <span id="tokenError" class="error" role="alert"></span>
+        </label>
+        <label>
+          Preferred platform
+          <span class="hint">Shown first on every result.</span>
+          <select id="preferredPlatform"></select>
+        </label>
+        <label class="check">
+          <input id="hoverButton" type="checkbox" />
+          Show the "Find song" button on images on X and Instagram
+        </label>
+        <div class="actions">
+          <button class="primary" type="submit">Save</button>
+          <button id="test" type="button">Test connection</button>
+          <span id="saved" role="status"></span>
+        </div>
+        <ul id="checks" aria-live="polite"></ul>
+      </form>
+    </main>
+    <script src="options.js"></script>
+  </body>
+</html>

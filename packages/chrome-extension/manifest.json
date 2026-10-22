@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Song from Screenshot",
+  "version": "0.1.0",
+  "description": "Find the song in a screenshot of a music player, using your own song-resolver Worker.",
+  "minimum_chrome_version": "116",
+  "permissions": ["storage", "contextMenus", "activeTab", "scripting"],
+  "host_permissions": [
+    "https://pbs.twimg.com/*",
+    "https://*.cdninstagram.com/*",
+    "https://*.fbcdn.net/*"
+  ],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://x.com/*",
+        "https://twitter.com/*",
+        "https://www.instagram.com/*"
+      ],
+      "js": ["content.js"]
+    }
+  ],
+  "options_page": "options.html",
+  "action": { "default_popup": "popup.html" },
+  "icons": {
+    "16": "icons/16.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  }
+}

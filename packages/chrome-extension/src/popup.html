@@ -3,8 +3,194 @@
   <head>
     <meta charset="utf-8" />
     <title>Song from Screenshot</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #fff;
+        --surface: #f4f4f5;
+        --text: #18181b;
+        --muted: #71717a;
+        --border: #e4e4e7;
+        --accent: #18181b;
+        --accent-text: #fff;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #18181b;
+          --surface: #27272a;
+          --text: #fafafa;
+          --muted: #a1a1aa;
+          --border: #3f3f46;
+          --accent: #facc15;
+          --accent-text: #18181b;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        width: 340px;
+        background: var(--bg);
+        color: var(--text);
+        font:
+          14px/1.4 system-ui,
+          sans-serif;
+      }
+      header,
+      footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 14px;
+      }
+      header {
+        border-bottom: 1px solid var(--border);
+      }
+      footer:has(#clear[hidden]) {
+        display: none;
+      }
+      h1 {
+        font-size: 15px;
+        margin: 0;
+      }
+      button {
+        font: inherit;
+        color: inherit;
+        cursor: pointer;
+      }
+      .plain {
+        border: 0;
+        background: none;
+        color: var(--muted);
+        padding: 4px;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      .plain:hover {
+        color: var(--text);
+      }
+      .empty {
+        color: var(--muted);
+        margin: 0;
+        padding: 16px 14px;
+      }
+      .setup {
+        display: block;
+        margin: 0 14px 16px;
+        padding: 8px 16px;
+        border: 0;
+        border-radius: 8px;
+        background: var(--accent);
+        color: var(--accent-text);
+        font-weight: 600;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .history {
+        max-height: 440px;
+        overflow-y: auto;
+      }
+      .entry {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 0 8px;
+        padding: 0 14px 0 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .row {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        min-width: 0;
+        padding: 8px 0 8px 14px;
+        border: 0;
+        background: none;
+        text-align: left;
+      }
+      .row:hover {
+        background: var(--surface);
+      }
+      .artwork {
+        flex: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 4px;
+        background: var(--surface);
+        object-fit: cover;
+      }
+      .text {
+        display: grid;
+        min-width: 0;
+      }
+      .text > * {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .artist,
+      .when {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .arrow {
+        margin-left: 4px;
+        color: var(--muted);
+        font-size: 11px;
+      }
+      .primary {
+        padding: 5px 10px;
+        border-radius: 999px;
+        background: var(--accent);
+        color: var(--accent-text);
+        font-size: 12px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .primary .arrow {
+        color: inherit;
+      }
+      .all {
+        grid-column: 1 / -1;
+        padding: 0 0 10px 64px;
+      }
+      .all a {
+        display: block;
+        padding: 4px 0;
+      }
+      .all a:hover {
+        text-decoration: underline;
+      }
+      .note {
+        margin: 0 0 4px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+    </style>
   </head>
   <body>
+    <header>
+      <h1>Song from Screenshot</h1>
+      <button id="settings" class="plain" type="button">Settings</button>
+    </header>
+    <main id="content"></main>
+    <footer>
+      <button id="clear" class="plain" type="button" hidden>
+        Clear history
+      </button>
+    </footer>
     <script src="popup.js"></script>
   </body>
 </html>

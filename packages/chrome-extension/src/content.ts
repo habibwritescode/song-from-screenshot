@@ -1,4 +1,5 @@
 import { pickImage } from "./lib/find-image";
+import { blobToDataUrl, sniffImageType } from "./lib/image-bytes";
 import type { FindRequest, FindResult } from "./lib/pipeline";
 import { DEFAULT_SETTINGS, type DisplaySettings } from "./lib/settings";
 import { createHoverButton } from "./ui/button";
@@ -7,6 +8,29 @@ import css from "./ui/styles.css";
 
 const CARD_GAP = 8;
 const CARD_WIDTH = 320;
+// The hover button is for X and Instagram; elsewhere the script only runs
+// after a right-click, and stays out of the way.
+const HOVER_HOSTS = new Set(["x.com", "twitter.com", "www.instagram.com"]);
+const hoverSite = HOVER_HOSTS.has(location.hostname);
+
+/** What a lookup is about and where its card goes. */
+interface Target {
+  /** Identifies the lookup: the image element, or the URL when there's no element. */
+  key: object | string;
+  rect: () => DOMRect;
+  src: string;
+  srcset: string;
+  /** Right-clicks allow a screen capture if the download fails. */
+  capture: boolean;
+}
+
+const imageTarget = (image: HTMLImageElement, capture: boolean): Target => ({
+  key: image,
+  rect: () => image.getBoundingClientRect(),
+  src: image.currentSrc || image.src,
+  srcset: image.srcset,
+  capture,
+});
 
 let settings: DisplaySettings = DEFAULT_SETTINGS;
 // Content scripts can't read extension storage (the background restricts it
@@ -40,11 +64,14 @@ sheet.replaceSync(css);
 root.adoptedStyleSheets = [sheet];
 document.documentElement.append(host);
 
-const button = createHoverButton((image) => void find(image));
+const button = createHoverButton(
+  (image) => void find(imageTarget(image, false)),
+);
 root.append(button.element);
 
-let card: { image: HTMLImageElement; element: HTMLElement } | null = null;
-const inFlight = new WeakSet<HTMLImageElement>();
+let card: { key: Target["key"]; element: HTMLElement } | null = null;
+const inFlight = new Set<Target["key"]>();
+let contextPoint: { x: number; y: number } | null = null;
 
 function closeCard() {
   card?.element.remove();
@@ -71,23 +98,52 @@ function place(element: HTMLElement, rect: DOMRect) {
   element.style.top = `${top + scrollY}px`;
 }
 
-function showCard(image: HTMLImageElement, state: CardState) {
+function showCard(target: Target, state: CardState) {
   closeCard();
   const element = renderCard(state, settings.preferredPlatform, {
     onClose: closeCard,
-    onRetry: () => void find(image),
+    onRetry: () => void find(target),
     onOpenOptions: () =>
       void chrome.runtime.sendMessage({ type: "open_options" }),
   });
   root.append(element);
-  place(element, image.getBoundingClientRect());
-  card = { image, element };
+  place(element, target.rect());
+  card = { key: target.key, element };
 }
 
-async function find(image: HTMLImageElement) {
-  if (inFlight.has(image)) return;
-  inFlight.add(image);
-  showCard(image, { kind: "loading" });
+// The background refuses bigger downloads too.
+const MAX_BLOB_BYTES = 25 * 1024 * 1024;
+
+/** blob: URLs only exist in this page, so the background can't fetch them. */
+async function readPageBlob(src: string): Promise<string> {
+  try {
+    const blob = await (await fetch(src)).blob();
+    if (blob.size > MAX_BLOB_BYTES) return src;
+    const head = new Uint8Array(await blob.slice(0, 16).arrayBuffer());
+    const type = sniffImageType(head);
+    return (
+      (type && (await blobToDataUrl(blob.slice(0, blob.size, type)))) || src
+    );
+  } catch {
+    return src;
+  }
+}
+
+function captureRequest(target: Target): FindRequest["capture"] {
+  // A capture is of the top frame, so a box inside an iframe would be wrong.
+  if (!target.capture || window !== window.top) return undefined;
+  const { x, y, width, height } = target.rect();
+  return {
+    rect: { x, y, width, height },
+    viewport: { width: innerWidth, height: innerHeight },
+  };
+}
+
+async function find(target: Target) {
+  if (inFlight.has(target.key)) return;
+  inFlight.add(target.key);
+  button.hide();
+  showCard(target, { kind: "loading" });
   // Not awaited: the card already has the settings from page load.
   void refreshSettings();
 
@@ -95,8 +151,11 @@ async function find(image: HTMLImageElement) {
   try {
     const request: FindRequest = {
       type: "find",
-      src: image.currentSrc || image.src,
-      srcset: image.srcset,
+      src: target.src.startsWith("blob:")
+        ? await readPageBlob(target.src)
+        : target.src,
+      srcset: target.srcset,
+      capture: captureRequest(target),
     };
     const result = (await chrome.runtime.sendMessage(request)) as
       FindResult | undefined;
@@ -111,17 +170,57 @@ async function find(image: HTMLImageElement) {
     // The extension was reloaded or updated; this old content script is cut off.
     state = { kind: "reload" };
   } finally {
-    inFlight.delete(image);
+    inFlight.delete(target.key);
   }
   // Only if the user hasn't closed the loading card or moved on to another image.
-  if (card?.image === image) showCard(image, state);
+  if (card?.key === target.key) showCard(target, state);
+}
+
+const hasSrc = (
+  element: Element,
+  srcUrl: string,
+): element is HTMLImageElement =>
+  element instanceof HTMLImageElement &&
+  (element.currentSrc === srcUrl || element.src === srcUrl);
+
+/**
+ * Right-click "Find song". Chrome reports the image URL when the click was on
+ * an image; on Instagram's overlays it reports none, so the script looks under
+ * the point it saw the menu open at. On other sites the first right-click
+ * injects the script after the menu opened, so it has no point yet. A
+ * right-clicked image skips the size threshold: the user picked it.
+ */
+function findFromContextMenu(srcUrl: string | undefined) {
+  const stack = contextPoint
+    ? document.elementsFromPoint(contextPoint.x, contextPoint.y)
+    : [];
+  // Chrome's srcUrl names the image clicked; the point tells copies of it apart.
+  const image = srcUrl
+    ? (stack.find((element) => hasSrc(element, srcUrl)) ??
+      [...document.images].find((element) => hasSrc(element, srcUrl)) ??
+      null)
+    : pickImage(stack);
+  if (image) return void find(imageTarget(image, true));
+
+  const anchor = contextPoint
+    ? new DOMRect(contextPoint.x, contextPoint.y, 0, 0)
+    : new DOMRect(innerWidth - CARD_GAP, CARD_GAP, 0, 0);
+  const target: Target = {
+    key: srcUrl ?? "no-image",
+    rect: () => anchor,
+    src: srcUrl ?? "",
+    srcset: "",
+    capture: false,
+  };
+  if (srcUrl) void find(target);
+  else showCard(target, { kind: "no_image" });
 }
 
 let frame = 0;
 document.addEventListener(
   "pointermove",
   (event) => {
-    if (!settings.hoverButton || frame) return;
+    if (!hoverSite || !settings.hoverButton || frame) return;
     frame = requestAnimationFrame(() => {
       frame = 0;
       const stack = document.elementsFromPoint(event.clientX, event.clientY);
@@ -153,6 +252,18 @@ document.addEventListener(
     if (card && !event.composedPath().includes(host)) closeCard();
   },
   true,
+);
+
+document.addEventListener(
+  "contextmenu",
+  (event) => (contextPoint = { x: event.clientX, y: event.clientY }),
+  { capture: true, passive: true },
+);
+
+chrome.runtime.onMessage.addListener(
+  (message: { type: string; srcUrl?: string }) => {
+    if (message.type === "context_find") findFromContextMenu(message.srcUrl);
+  },
 );
 
 document.addEventListener("visibilitychange", () => {

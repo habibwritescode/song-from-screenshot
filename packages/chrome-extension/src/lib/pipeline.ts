@@ -1,5 +1,10 @@
 import { resolve, type Fetch, type Outcome } from "./api";
-import { sniffImageType } from "./image-bytes";
+import {
+  blobToDataUrl,
+  sniffImageType,
+  type Box,
+  type Size,
+} from "./image-bytes";
 import { bestImageUrl } from "./image-url";
 import { isConfigured, type Settings } from "./settings";
 
@@ -8,6 +13,13 @@ export interface FindRequest {
   type: "find";
   src: string;
   srcset: string;
+  /** Where the image is on screen, when a screen capture is allowed as a fallback. */
+  capture?: CaptureRequest;
+}
+
+export interface CaptureRequest {
+  rect: Box;
+  viewport: Size;
 }
 
 export interface FindResult {
@@ -22,40 +34,44 @@ export interface FindResult {
 export interface PipelineDeps {
   fetch: Fetch;
   loadSettings: () => Promise<Settings>;
+  /** Crops the image out of a screenshot of the tab; absent where not allowed. */
+  captureImage?: (capture: CaptureRequest) => Promise<Blob | null>;
+  /** Re-encodes an image as a JPEG the Worker accepts, or null if it can't. */
+  convertImage?: (image: Blob) => Promise<Blob | null>;
 }
 
 const IMAGE_TIMEOUT_MS = 10_000;
+// Bigger files aren't screenshots, and reading them would stall the worker.
+const MAX_DOWNLOAD_BYTES = 25 * 1024 * 1024;
+// What song-resolver accepts.
+const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
+const WORKER_TYPES = new Set(["image/png", "image/jpeg", "image/webp"]);
+
+const workerAccepts = (image: Blob) =>
+  WORKER_TYPES.has(image.type) && image.size <= MAX_UPLOAD_BYTES;
 
 async function download(url: string, fetchFn: Fetch): Promise<Blob | null> {
   try {
     const response = await fetchFn(url, {
       signal: AbortSignal.timeout(IMAGE_TIMEOUT_MS),
     });
-    if (!response.ok) return null;
+    const declared = Number(response.headers.get("Content-Length"));
+    if (!response.ok || declared > MAX_DOWNLOAD_BYTES) return null;
     const bytes = new Uint8Array(await response.arrayBuffer());
+    if (bytes.length > MAX_DOWNLOAD_BYTES) return null;
+    // Hosts answer expired or private links with a web page, not an error.
     const type = sniffImageType(bytes);
-    return new Blob([bytes], type ? { type } : {});
+    return type && new Blob([bytes], { type });
   } catch {
     return null;
   }
-}
-
-async function toDataUrl(blob: Blob): Promise<string | null> {
-  if (!blob.type) return null;
-  const bytes = new Uint8Array(await blob.arrayBuffer());
-  let binary = "";
-  // Chunked: spreading a whole image into fromCharCode overflows the stack.
-  for (let i = 0; i < bytes.length; i += 0x8000) {
-    binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
-  }
-  return `data:${blob.type};base64,${btoa(binary)}`;
 }
 
 async function artworkFor(outcome: Outcome, fetchFn: Fetch) {
   const url = outcome.kind === "result" && outcome.response.track?.artworkUrl;
   if (!url) return null;
   const blob = await download(url, fetchFn);
-  return blob && toDataUrl(blob);
+  return blob && blobToDataUrl(blob);
 }
 
 export async function findSong(
@@ -70,16 +86,21 @@ export async function findSong(
     };
   }
 
-  const image = await download(
-    bestImageUrl(request.src, request.srcset),
-    deps.fetch,
-  );
-  if (!image) {
+  const image =
+    (await download(bestImageUrl(request.src, request.srcset), deps.fetch)) ??
+    (request.capture && deps.captureImage
+      ? await deps.captureImage(request.capture)
+      : null);
+  const upload =
+    image && !workerAccepts(image)
+      ? ((await deps.convertImage?.(image)) ?? null)
+      : image;
+  if (!upload) {
     return {
       outcome: { kind: "error", code: "image_unreadable" },
       artwork: null,
     };
   }
-  const outcome = await resolve(image, settings, deps.fetch);
+  const outcome = await resolve(upload, settings, deps.fetch);
   return { outcome, artwork: await artworkFor(outcome, deps.fetch) };
 }

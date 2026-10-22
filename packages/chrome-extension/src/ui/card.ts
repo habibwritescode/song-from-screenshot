@@ -1,7 +1,8 @@
 import type { ResolveResponse } from "song-resolver/src/types";
 import type { Outcome, OutcomeError } from "../lib/api";
-import { isWebUrl, orderedLinks, type LinkButton } from "../lib/links";
+import { resultLinks } from "../lib/links";
 import type { Platform } from "../lib/settings";
+import { el, linkList } from "./dom";
 
 export type CardState =
   | { kind: "loading" }
@@ -36,16 +37,6 @@ const ACTION_LABELS: Record<Action, string> = {
   options: "Open settings",
 };
 
-function el<K extends keyof HTMLElementTagNameMap>(
-  tag: K,
-  props: Partial<HTMLElementTagNameMap[K]> = {},
-  ...children: (Node | string | null)[]
-): HTMLElementTagNameMap[K] {
-  const element = Object.assign(document.createElement(tag), props);
-  element.append(...children.filter((child) => child !== null));
-  return element;
-}
-
 function actionButton(
   action: Action | "close",
   label: string,
@@ -55,28 +46,6 @@ function actionButton(
   const button = el("button", { type: "button", onclick, ...props }, label);
   button.dataset.action = action;
   return button;
-}
-
-/** Every link the card shows comes from the Worker, so only web URLs pass. */
-function linkList(links: LinkButton[]): HTMLElement {
-  return el(
-    "ul",
-    { className: "links" },
-    ...links
-      .filter(({ url }) => isWebUrl(url))
-      .map(({ label, url }) =>
-        el(
-          "li",
-          {},
-          el(
-            "a",
-            { href: url, target: "_blank", rel: "noopener noreferrer" },
-            label,
-            el("span", { className: "arrow", ariaHidden: "true" }, "↗"),
-          ),
-        ),
-      ),
-  );
 }
 
 function trackInfo(
@@ -97,48 +66,30 @@ function trackInfo(
   );
 }
 
-function searchLinks(response: ResolveResponse): HTMLElement | null {
-  const search = response.searchLinks;
-  if (!search) return null;
-  return linkList([
-    { key: "spotify", label: "Search Spotify", url: search.spotify },
-    { key: "youtube", label: "Search YouTube", url: search.youtube },
-  ]);
-}
-
 function resultBody(
   response: ResolveResponse,
   artwork: string | null,
   preferred: Platform,
 ): [state: string, body: (Node | null)[]] {
   switch (response.status) {
-    case "matched": {
-      const links = orderedLinks(response.links, preferred);
-      if (response.songLink) {
-        links.push({
-          key: "songLink",
-          label: "More platforms",
-          url: response.songLink,
-        });
-      }
+    case "matched":
       return [
         "matched",
         [
           response.track ? trackInfo(response.track, artwork) : null,
-          linkList(links),
+          linkList(resultLinks(response, preferred)),
           response.partial
             ? el("p", { className: "note" }, "Some platforms didn't answer.")
             : null,
         ],
       ];
-    }
     case "uncertain":
       return [
         "uncertain",
         [
           el("p", { className: "message" }, "Not sure this is the song."),
           response.track ? trackInfo(response.track, artwork) : null,
-          searchLinks(response),
+          linkList(resultLinks(response, preferred)),
         ],
       ];
     case "not_found":
@@ -146,7 +97,7 @@ function resultBody(
         "not_found",
         [
           el("p", { className: "message" }, "No song found in this image."),
-          searchLinks(response),
+          linkList(resultLinks(response, preferred)),
         ],
       ];
   }

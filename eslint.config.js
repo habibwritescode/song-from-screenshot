@@ -7,6 +7,8 @@ export default tseslint.config(
       "**/node_modules/",
       "**/.wrangler/",
       "**/coverage/",
+      "**/test-results/",
+      "**/playwright-report/",
       "**/dist/",
       "**/worker-configuration.d.ts",
     ],

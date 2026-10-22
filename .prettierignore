@@ -5,3 +5,5 @@ dist/
 package-lock.json
 worker-configuration.d.ts
 **/fixtures/
+test-results/
+playwright-report/

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>X-like feed</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: system-ui;
+      }
+      article {
+        width: 560px;
+        margin: 24px auto;
+      }
+      /* Like X: the photo is a background, with a transparent <img> on top. */
+      .media {
+        position: relative;
+        width: 500px;
+        height: 500px;
+        background: center / cover
+          url("https://pbs.twimg.com/media/GZxFeed?format=jpg&name=small");
+      }
+      .media img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <article>
+      <p>this song is stuck in my head</p>
+      <div class="media">
+        <img
+          id="feed"
+          alt="Image"
+          src="https://pbs.twimg.com/media/GZxFeed?format=jpg&name=small"
+        />
+      </div>
+    </article>
+  </body>
+</html>

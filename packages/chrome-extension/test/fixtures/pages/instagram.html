@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Instagram-like page</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: system-ui;
+      }
+      section {
+        position: relative;
+        width: 560px;
+        margin: 24px auto;
+      }
+      img {
+        display: block;
+        width: 560px;
+        height: auto;
+      }
+      /* Like Instagram: a transparent layer covers the photo. */
+      .overlay {
+        position: absolute;
+        inset: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <img
+        id="story"
+        alt=""
+        src="https://scontent.cdninstagram.com/v/story_640.jpg"
+        srcset="
+          https://scontent.cdninstagram.com/v/story_640.jpg   640w,
+          https://scontent.cdninstagram.com/v/story_1080.jpg 1080w
+        "
+        sizes="560px"
+      />
+      <div class="overlay"></div>
+    </section>
+    <section>
+      <img
+        id="fein"
+        alt=""
+        src="https://scontent.cdninstagram.com/v/fein.jpg"
+      />
+      <div class="overlay"></div>
+    </section>
+    <section>
+      <img
+        id="slide-tackle"
+        alt=""
+        src="https://scontent.cdninstagram.com/v/slide-tackle.jpg"
+      />
+      <div class="overlay"></div>
+    </section>
+    <section>
+      <img
+        id="avif"
+        alt=""
+        src="https://scontent.cdninstagram.com/v/fein.avif"
+      />
+      <div class="overlay"></div>
+    </section>
+  </body>
+</html>

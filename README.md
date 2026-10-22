@@ -55,7 +55,11 @@ You need:
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/habibwritescode/song-from-screenshot/tree/main/packages/song-resolver)
 
-Cloudflare copies the Worker into a new repo on your GitHub account, creates the cache, and asks for each key. For `ACCESS_TOKEN`, paste a long random string (`openssl rand -base64 32` makes one) and keep it: your apps send it with every request. Leave optional keys empty to skip them.
+Cloudflare copies the Worker into a new repo on your GitHub account and redeploys it on every push to that repo. The repo holds only code, never your keys, and you can make it private. On the form:
+
+- **KV namespace** (`CACHE`): choose **Create new**. Don't reuse another Worker's namespace, or the two will share cached results.
+- **`ACCESS_TOKEN`**: paste a long random string (`openssl rand -base64 32` makes one) and keep it: your apps send it with every request.
+- Leave optional keys empty to skip them.
 
 ### Option B: Setup script
 

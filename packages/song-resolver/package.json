@@ -41,7 +41,7 @@
         "description": "Optional. A YouTube Data API v3 key from the Google Cloud console. Leave empty to skip."
       },
       "CACHE": {
-        "description": "KV namespace for cached results; created automatically."
+        "description": "Stores results so repeat lookups are instant. Create a new namespace; don't reuse another Worker's."
       }
     }
   }

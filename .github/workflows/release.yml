@@ -1,0 +1,37 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  extension:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Check the tag matches the extension's version
+        run: |
+          version=$(node -p "require('./packages/chrome-extension/package.json').version")
+          if [ "${GITHUB_REF_NAME#v}" != "$version" ]; then
+            echo "Tag $GITHUB_REF_NAME doesn't match chrome-extension version $version"
+            exit 1
+          fi
+      # What CI checks for the extension, so a tag on an untested commit can't ship.
+      - run: npm run lint
+      - run: npm run typecheck -w chrome-extension
+      - run: npm test -w chrome-extension
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e -w chrome-extension
+      - run: npm run zip -w chrome-extension
+      - name: Attach the zip to a GitHub release
+        run: gh release create "$GITHUB_REF_NAME" packages/chrome-extension/song-from-screenshot-extension-*.zip --title "$GITHUB_REF_NAME" --generate-notes
+        env:
+          GH_TOKEN: ${{ github.token }}

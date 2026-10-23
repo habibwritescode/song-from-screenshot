@@ -31,7 +31,7 @@ curl -H "Authorization: Bearer $TOKEN" -F image=@screenshot.png https://song-res
 }
 ```
 
-A Chrome extension and a phone share-sheet shortcut that call this API are planned.
+There's a [Chrome extension](#chrome-extension) that calls it from X, Instagram or any page. A phone share-sheet shortcut is planned.
 
 ## How it works
 
@@ -82,6 +82,33 @@ Running it again is safe: it asks before replacing any key that's already set, s
 cd packages/song-resolver
 curl -H "Authorization: Bearer <your token>" -F image=@fixtures/spotify-x-feed.png https://song-resolver.<you>.workers.dev/api/resolve
 ```
+
+## Chrome extension
+
+Find the song in a screenshot without leaving the page. On X and Instagram, hover over an image and click **♪ Find song**. On any site, right-click an image and choose **Find song**. A card next to the image shows the song with a link for each platform, your preferred one first. The toolbar button lists your last 10 songs.
+
+It uses your own Worker, so set that up first.
+
+### Install
+
+1. Download `song-from-screenshot-extension-<version>.zip` from the [latest release](https://github.com/habibwritescode/song-from-screenshot/releases/latest).
+2. Unzip it somewhere you'll keep it. Chrome loads the extension from that folder.
+3. Open `chrome://extensions`, turn on **Developer mode** (top right), click **Load unpacked** and choose the unzipped folder.
+4. The settings page opens. Enter your Worker's URL (`https://song-resolver.<you>.workers.dev`) and your access token, click **Test connection**, then **Save**.
+
+To update, download the new zip, replace the folder's contents, and click the reload button on the extension's card in `chrome://extensions`. Tabs that were already open need a reload too; until then the card says so.
+
+### Permissions
+
+| Permission                                           | Why                                                                                                                                                                            |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Storage                                              | Your Worker URL, token, settings and last 10 songs, on this computer only. Web pages can't read them.                                                                          |
+| Context menus                                        | The right-click **Find song** item.                                                                                                                                            |
+| Active tab, scripting                                | Only after you right-click: to show the card on sites other than X and Instagram, and to crop the image from a screenshot of the tab when the site won't let it be downloaded. |
+| `pbs.twimg.com`, `*.cdninstagram.com`, `*.fbcdn.net` | To download the full-size image from X's and Instagram's image servers.                                                                                                        |
+| Runs on `x.com`, `twitter.com`, `www.instagram.com`  | The hover button.                                                                                                                                                              |
+
+Screenshots go only to your Worker. Album covers load from the platforms' image servers (Apple Music, Spotify, Deezer). There's no analytics.
 
 ## Spotify keys
 
@@ -159,6 +186,18 @@ npm run test:live -w song-resolver    # real Claude and platform calls on the fi
 npm run lint
 npm run typecheck -w song-resolver
 ```
+
+The Chrome extension:
+
+```sh
+npm run dev -w chrome-extension       # builds packages/chrome-extension/dist on every change; load it unpacked
+npm test -w chrome-extension          # unit tests
+npx playwright install chromium       # once, for the end-to-end tests
+npm run test:e2e -w chrome-extension  # builds, then runs the extension in headless Chromium
+npm run zip -w chrome-extension       # the release zip (macOS and Linux: uses the zip command)
+```
+
+To release the extension, run `npx npm@11 version 0.2.0 -w chrome-extension --no-git-tag-version` (it updates `package.json` and the lockfile; npm 10 also rewrites unrelated lockfile entries), set the same version in `packages/chrome-extension/manifest.json` (the build refuses to run if they differ), commit, and push a tag like `v0.2.0`. The release workflow checks the tag matches, runs the typecheck and all tests, and attaches the zip to a GitHub release.
 
 Use `npm ci`, not `npm install`: npm 10's `npm install` crashes on this workspace without the lockfile. To add a dependency, use `npx npm@11 install <pkg> -w song-resolver`.
 

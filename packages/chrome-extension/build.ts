@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import { context, build, type BuildOptions } from "esbuild";
-import { cp, mkdir, rm } from "node:fs/promises";
+import { cp, mkdir, readFile, rm } from "node:fs/promises";
 
 const watch = process.argv.includes("--watch");
 const outdir = "dist";
@@ -30,8 +30,26 @@ const builds: BuildOptions[] = [
 async function copyStatic() {
   for (const path of STATIC) {
     const name = path.replace(/^src\//, "");
-    await cp(path, `${outdir}/${name}`, { recursive: true });
+    await cp(path, `${outdir}/${name}`, {
+      recursive: true,
+      // Icon sources stay in the repo; Chrome only reads the PNGs.
+      filter: (source) => !source.endsWith(".svg"),
+    });
   }
+}
+
+// The release tag is checked against package.json, and Chrome reads the
+// manifest, so a mismatch would ship a zip that reports the wrong version.
+const readJson = async (path: string) =>
+  JSON.parse(await readFile(path, "utf8")) as { version: string };
+const [pkg, manifest] = await Promise.all([
+  readJson("package.json"),
+  readJson("manifest.json"),
+]);
+if (pkg.version !== manifest.version) {
+  throw new Error(
+    `manifest.json version ${manifest.version} doesn't match package.json ${pkg.version}`,
+  );
 }
 
 await rm(outdir, { recursive: true, force: true });

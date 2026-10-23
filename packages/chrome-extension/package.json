@@ -6,6 +6,7 @@
   "scripts": {
     "build": "node --experimental-strip-types --disable-warning=ExperimentalWarning build.ts",
     "dev": "node --experimental-strip-types --disable-warning=ExperimentalWarning build.ts --watch",
+    "zip": "npm run build && cd dist && rm -f ../song-from-screenshot-extension-$npm_package_version.zip && zip -qrX ../song-from-screenshot-extension-$npm_package_version.zip .",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "test:e2e": "npm run build && playwright test"

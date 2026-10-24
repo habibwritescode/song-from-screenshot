@@ -6,7 +6,7 @@
     <title>Song from Screenshot</title>
     <meta
       name="description"
-      content="Find the song in a screenshot of a music player, with a link for every platform. Open source and self-hosted."
+      content="Find the song in a screenshot of a music player, with a link to it on every platform. It's open source, and you host it yourself."
     />
     <meta name="color-scheme" content="light dark" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
@@ -17,7 +17,7 @@
     <meta property="og:title" content="Song from Screenshot" />
     <meta
       property="og:description"
-      content="Screenshot in, links out: the song from any Now Playing screenshot, on every platform. Open source and self-hosted."
+      content="Get links to the song in any Now Playing screenshot, on every platform. It's open source, and you host it yourself."
     />
     <meta
       property="og:image"
@@ -27,7 +27,7 @@
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="Song from Screenshot: a Spotify screenshot of EGO by Naarly next to its result card with links to every platform"
+      content="A Spotify screenshot of EGO by Naarly next to its result card, with links to every platform"
     />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="stylesheet" href="styles.css" />
@@ -62,9 +62,9 @@
         </h1>
         <div class="hero__lead">
           <p>
-            Drop in a Spotify or Apple Music Now Playing screenshot from X or
-            Instagram. Get the same song on every platform, and never a wrong
-            one.
+            Give it a screenshot of Spotify's or Apple Music's Now Playing
+            screen, from X, Instagram or your phone. You get links to the same
+            song on every platform, or no link when it isn't sure.
           </p>
           <div class="hero__actions">
             <a class="button button--primary" href="#get-it">Set up your own</a>
@@ -490,35 +490,36 @@
       <section class="section" id="how-it-works" aria-labelledby="how-title">
         <p class="eyebrow">How it works</p>
         <h2 class="section__title" id="how-title">
-          No link beats a wrong link.
+          Song from Screenshot shows no link rather than a wrong one.
         </h2>
         <ol class="steps">
           <li class="step">
             <h3 class="step__title">Claude reads the player</h3>
             <p>
-              Just the title and artist. Post text, playlist names, device names
-              and badges are ignored.
+              It reads only the title and artist, and ignores post text,
+              playlist names, device names and badges.
             </p>
           </li>
           <li class="step">
             <h3 class="step__title">Every platform, at once</h3>
             <p>
-              Apple Music, Spotify, Deezer and YouTube are searched at the same
+              It searches Apple Music, Spotify, Deezer and YouTube at the same
               time.
             </p>
           </li>
           <li class="step">
             <h3 class="step__title">Only exact matches</h3>
             <p>
-              Same title, same artist, or no link. Remixes, covers, live
-              versions and fan uploads don't count.
+              A platform gets a link only when its result has the same title and
+              artist. Remixes, covers, live versions and fan uploads don't
+              count.
             </p>
           </li>
           <li class="step">
             <h3 class="step__title">Instant the second time</h3>
             <p>
-              Results are cached, so the same screenshot or song comes back in
-              milliseconds.
+              Your copy caches results, so the same screenshot or song comes
+              back in milliseconds.
             </p>
           </li>
         </ol>
@@ -526,7 +527,9 @@
 
       <section class="section" aria-labelledby="where-title">
         <p class="eyebrow">Where you can use it</p>
-        <h2 class="section__title" id="where-title">Right where you saw it.</h2>
+        <h2 class="section__title" id="where-title">
+          Use it on X, Instagram or your phone.
+        </h2>
         <div class="clients">
           <article class="client client--wide">
             <div class="client__visual client__visual--extension">
@@ -549,8 +552,8 @@
               <h3 class="client__title">Chrome extension</h3>
               <p>
                 On X and Instagram, hover over an image and click Find song. On
-                any other site, right-click an image. The song shows up right
-                next to it, and the toolbar keeps your last 10.
+                any other site, right-click an image. The song appears next to
+                it, and the toolbar button lists your last 10 songs.
               </p>
               <a
                 class="text-link"
@@ -591,8 +594,9 @@
               <p class="status">Available now</p>
               <h3 class="client__title">Phone share sheet</h3>
               <p>
-                Tap Share on a screenshot and choose Find Song. Android installs
-                it from Chrome; iPhone uses a Shortcut.
+                Tap Share on a screenshot and choose Find Song. On Android,
+                install the app from Chrome first. On iPhone, a Shortcut sends
+                the screenshot.
               </p>
               <a
                 class="text-link"
@@ -610,7 +614,7 @@
       <section class="get-it" id="get-it" aria-labelledby="get-it-title">
         <p class="eyebrow eyebrow--panel">Get it</p>
         <h2 class="section__title get-it__title" id="get-it-title">
-          Run your own copy. Your keys, your screenshots.
+          Run your own copy, with your own keys.
         </h2>
         <div class="options">
           <div class="option option--self-host">
@@ -621,8 +625,8 @@
               <p class="eyebrow eyebrow--panel">You need</p>
               <p>
                 A Cloudflare account (free) and a Claude API key with a little
-                credit. Optional: a Spotify developer app and a YouTube Data API
-                key, both free.
+                credit. A Spotify developer app and a YouTube Data API key are
+                optional, and both are free.
               </p>
             </div>
             <div class="setup">
@@ -665,8 +669,8 @@
               Hosted <span class="tag">Coming soon</span>
             </h3>
             <p>
-              The same thing with nothing to set up. Sign in and start finding
-              songs.
+              This will be the same tool with nothing to set up. You'll sign in
+              and start finding songs.
             </p>
           </div>
         </div>
@@ -676,29 +680,29 @@
         <div class="cost__heading">
           <p class="eyebrow">Cost and privacy</p>
           <h2 class="section__title" id="cost-title">
-            Fractions of a cent. Nothing kept.
+            Most screenshots cost a fraction of a cent.
           </h2>
         </div>
         <dl class="facts">
           <div class="fact">
             <dt>$0.0004</dt>
             <dd>
-              Claude usage per new screenshot. About 1¢ when it takes a second,
-              stronger read.
+              That's the Claude cost of each new screenshot, or about 1¢ when it
+              needs a second, stronger read.
             </dd>
           </div>
           <div class="fact">
             <dt>$0</dt>
             <dd>
-              Cloudflare's free plan, Spotify's API and YouTube's free quota of
-              about 100 new songs a day.
+              Cloudflare's free plan, Spotify's API and YouTube's free quota
+              cost nothing. The YouTube quota covers about 100 new songs a day.
             </dd>
           </div>
           <div class="fact">
             <dt>Private</dt>
             <dd>
-              Your screenshots go only to your own copy and to Claude. Only the
-              song is remembered, never the image.
+              Your screenshots go only to your own copy and to Claude. Your copy
+              keeps the song, never the image.
             </dd>
           </div>
         </dl>

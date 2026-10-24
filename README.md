@@ -1,6 +1,6 @@
 # song-from-screenshot
 
-Send it a screenshot of a music player's Now Playing screen — Spotify or Apple Music, including ones re-shared in a tweet or an Instagram story — and get back direct links to the song on Apple Music, Spotify, Deezer, YouTube and YouTube Music.
+Send it a screenshot of a music player's Now Playing screen and get back direct links to the song on Apple Music, Spotify, Deezer, YouTube and YouTube Music. It reads Spotify's and Apple Music's players, including screenshots re-shared in a post on X or an Instagram story.
 
 It's a small API you deploy to your own Cloudflare account with your own keys. Nobody else's server sees your screenshots, and nobody else pays for your lookups.
 
@@ -31,25 +31,25 @@ curl -H "Authorization: Bearer $TOKEN" -F image=@screenshot.png https://song-res
 }
 ```
 
-There's a [Chrome extension](#chrome-extension) that calls it from X, Instagram or any page, and your Worker also serves a [phone app](#use-it-on-your-phone): share a screenshot to it on Android, or through a Shortcut on iPhone.
+A [Chrome extension](#chrome-extension) calls it from X, Instagram or any page. Your Worker also serves a [phone app](#use-it-on-your-phone). On Android you share a screenshot to it, and on iPhone a Shortcut sends it.
 
 ## How it works
 
 1. Claude reads the song title and artist from the player in the screenshot, ignoring tweet text, playlist names, device names and badges. It uses Claude Haiku 5.5, and retries once with Claude Sonnet 5.5 when Haiku's reading doesn't match any real song.
-2. Apple Music (iTunes Search), Deezer, Spotify and YouTube are searched in parallel.
-3. A link is only returned when that platform's result has the same title and artist. Remixes, covers, live versions and fan uploads are rejected, so you get no link rather than a wrong one. Spotify and YouTube search links are always included as a fallback.
-4. Results are cached in Workers KV, so the same screenshot or the same song again is answered in milliseconds without calling Claude or the platforms.
+2. The Worker searches Apple Music (iTunes Search), Deezer, Spotify and YouTube in parallel.
+3. The Worker returns a link only when that platform's result has the same title and artist. It rejects remixes, covers, live versions and fan uploads, so you get no link rather than a wrong one. Whenever Claude reads a title and artist, Spotify and YouTube search links come back too, as a fallback.
+4. The Worker caches results in Workers KV, so the same screenshot or song comes back in milliseconds without calling Claude or the platforms.
 
-**Cost:** about $0.0004 of Claude usage per new screenshot (about 1¢ when the Sonnet retry runs). Cloudflare Workers' free plan, Spotify's API and the YouTube API's free quota (about 100 new songs a day) cost nothing.
+A new screenshot costs about $0.0004 of Claude usage, or about 1¢ when the Sonnet retry runs. Cloudflare Workers' free plan, Spotify's API and the YouTube API's free quota (about 100 new songs a day) cost nothing.
 
 ## Set up your own
 
 You need:
 
-- A **Cloudflare** account (free): <https://dash.cloudflare.com/sign-up>
-- A **Claude API key**: create one at <https://platform.claude.com> → **API keys**. You'll need to add a little credit.
-- Recommended, for direct Spotify links: a **Spotify developer app** (free). See [Spotify keys](#spotify-keys).
-- Optional, for direct YouTube links: a **YouTube Data API key** (free). See [YouTube key](#youtube-key).
+- A Cloudflare account (free): <https://dash.cloudflare.com/sign-up>
+- A Claude API key. Create one at <https://platform.claude.com> under **API keys**, and add a little credit.
+- A Spotify developer app (free), recommended for direct Spotify links. See [Spotify keys](#spotify-keys).
+- A YouTube Data API key (free), optional, for direct YouTube links. See [YouTube key](#youtube-key).
 
 ### Option A: Deploy button
 
@@ -58,8 +58,8 @@ You need:
 Cloudflare copies the Worker into a new repo on your GitHub account and redeploys it on every push to that repo. The repo holds only code, never your keys, and you can make it private. On the form:
 
 - **KV namespace** (`CACHE`): choose **Create new**. Don't reuse another Worker's namespace, or the two will share cached results.
-- **`ACCESS_TOKEN`**: paste a long random string (`openssl rand -base64 32` makes one) and keep it: your apps send it with every request.
-- The form asks only for the required keys. To add Spotify or YouTube keys afterwards, open the Worker in the Cloudflare dashboard (**Workers & Pages**), go to **Settings**, and under the runtime **Variables and secrets** (not the build ones) click **Add**, choose type **Secret**, and use the names `SPOTIFY_CLIENT_ID` and `SPOTIFY_CLIENT_SECRET`, or `YOUTUBE_API_KEY`. See [Spotify keys](#spotify-keys) and [YouTube key](#youtube-key) for how to get them.
+- **`ACCESS_TOKEN`**: paste a long random string (`openssl rand -base64 32` makes one) and keep it, because your apps send it with every request.
+- The form asks only for the required keys. To add Spotify or YouTube keys afterwards, open the Worker in the Cloudflare dashboard (**Workers & Pages**) and go to **Settings**. Under the runtime **Variables and secrets** (not the build ones), click **Add**, choose type **Secret**, and use the names `SPOTIFY_CLIENT_ID` and `SPOTIFY_CLIENT_SECRET`, or `YOUTUBE_API_KEY`. [Spotify keys](#spotify-keys) and [YouTube key](#youtube-key) explain how to get them.
 
 ### Option B: Setup script
 
@@ -72,9 +72,9 @@ npm ci
 npm run setup -w song-resolver
 ```
 
-The script logs you in to Cloudflare (a browser window opens), deploys the Worker, asks for your keys (input is hidden), and prints your Worker's URL and a new access token. **The token is shown once**; save it in a password manager.
+The script logs you in to Cloudflare (a browser window opens), deploys the Worker, asks for your keys (input is hidden), and prints your Worker's URL and a new access token. It shows the token only once, so save it in a password manager.
 
-Running it again is safe: it asks before replacing any key that's already set, so it's also how you add a Spotify or YouTube key later. To deploy under another name, add `-- --name my-worker`.
+Running it again is safe. It asks before replacing any key that's already set, so it's also how you add a Spotify or YouTube key later. To deploy under another name, add `-- --name my-worker`.
 
 ### Try it
 
@@ -100,13 +100,13 @@ To update, download the new zip, replace the folder's contents, and click the re
 
 ### Permissions
 
-| Permission                                           | Why                                                                                                                                                                            |
-| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Storage                                              | Your Worker URL, token, settings and last 10 songs, on this computer only. Web pages can't read them.                                                                          |
-| Context menus                                        | The right-click **Find song** item.                                                                                                                                            |
-| Active tab, scripting                                | Only after you right-click: to show the card on sites other than X and Instagram, and to crop the image from a screenshot of the tab when the site won't let it be downloaded. |
-| `pbs.twimg.com`, `*.cdninstagram.com`, `*.fbcdn.net` | To download the full-size image from X's and Instagram's image servers.                                                                                                        |
-| Runs on `x.com`, `twitter.com`, `www.instagram.com`  | The hover button.                                                                                                                                                              |
+| Permission                                           | Why                                                                                                                                                                                    |
+| ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Storage                                              | Your Worker URL, token, settings and last 10 songs, on this computer only. Web pages can't read them.                                                                                  |
+| Context menus                                        | The right-click **Find song** item.                                                                                                                                                    |
+| Active tab, scripting                                | Only after you right-click. It shows the card on sites other than X and Instagram, and crops the image from a screenshot of the tab when the site won't let the extension download it. |
+| `pbs.twimg.com`, `*.cdninstagram.com`, `*.fbcdn.net` | To download the full-size image from X's and Instagram's image servers.                                                                                                                |
+| Runs on `x.com`, `twitter.com`, `www.instagram.com`  | The hover button.                                                                                                                                                                      |
 
 Screenshots go only to your Worker. Album covers load from the platforms' image servers (Apple Music, Spotify, Deezer). There's no analytics.
 
@@ -114,11 +114,11 @@ Screenshots go only to your Worker. Album covers load from the platforms' image 
 
 Your Worker also serves a small web app at its address, `https://song-resolver.<you>.workers.dev`. It shows the song with a link for each platform, your preferred one first, and keeps your last 10 songs on the phone. Screenshots go only to your Worker.
 
-**Set it up once.** Open your Worker's address on the phone and paste your access token. Or open the one-tap link the setup script prints, `https://<worker>/#token=<token>`: it saves the token and removes it from the address bar. If you deployed with the button, build that link yourself; if your token has `+`, `/` or `=` in it, write them as `%2B`, `%2F` and `%3D`.
+**Set it up once.** Open your Worker's address on the phone and paste your access token. Or open the one-tap link the setup script prints, `https://<worker>/#token=<token>`. The link saves the token and removes it from the address bar. If you deployed with the button, build that link yourself; if your token has `+`, `/` or `=` in it, write them as `%2B`, `%2F` and `%3D`.
 
 **Android.** In Chrome, open the ⋮ menu and choose **Install app** (or **Add to Home screen**). Then, from your gallery or a screenshot's preview, tap **Share** and choose **Find Song**.
 
-**iPhone.** iOS doesn't let web apps receive shares, so a Shortcut does it: it converts the screenshot to JPEG (iPhone screenshots are HEIC), sends it to your Worker, and opens the results in Safari. [Build it in a few minutes](packages/song-resolver/shortcut/README.md); it asks nothing once it's set up. Then tap **Share** on a screenshot and choose **Find Song**.
+**iPhone.** iOS doesn't let web apps receive shares, so a Shortcut does it. The Shortcut converts the screenshot to JPEG (iPhone screenshots are HEIC), sends it to your Worker, and opens the results in Safari. [Build it in a few minutes](packages/song-resolver/shortcut/README.md); it asks nothing once it's set up. Then tap **Share** on a screenshot and choose **Find Song**.
 
 **Any device.** Open your Worker's address and choose or paste a screenshot.
 
@@ -135,24 +135,24 @@ Without them, responses still include a Spotify search link.
 ## YouTube key
 
 1. Go to <https://console.cloud.google.com> and create a project.
-2. **APIs & Services → Library**: search for **YouTube Data API v3** and click **Enable**.
-3. **APIs & Services → Credentials → Create credentials → API key**. Copy it.
-4. Edit the key: under **API restrictions**, choose **Restrict key** and tick only **YouTube Data API v3**.
+2. In **APIs & Services → Library**, search for **YouTube Data API v3** and click **Enable**.
+3. In **APIs & Services → Credentials**, choose **Create credentials → API key** and copy the key.
+4. Edit the key. Under **API restrictions**, choose **Restrict key** and tick only **YouTube Data API v3**.
 
-The free quota is 10,000 units a day and each search costs 100, so about 100 new songs a day. Cached songs don't count. When the quota runs out, YouTube links are left out (the search link stays) until it resets.
+The free quota is 10,000 units a day and each search costs 100, so about 100 new songs a day. Cached songs don't count. When the quota runs out, the Worker leaves out YouTube links (the search link stays) until the quota resets.
 
 ## API
 
 ### `POST /api/resolve`
 
-`multipart/form-data` with one field, `image`: PNG, JPEG or WebP, up to 5 MB. Header `Authorization: Bearer <ACCESS_TOKEN>`. HEIC isn't supported; convert to JPEG first (the planned iPhone share shortcut will do this).
+`multipart/form-data` with one field, `image`: PNG, JPEG or WebP, up to 5 MB. Header `Authorization: Bearer <ACCESS_TOKEN>`. The Worker doesn't accept HEIC, so convert it to JPEG first. The iPhone Shortcut does this for you.
 
 | Field         | Meaning                                                                                                                                                                        |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `status`      | `matched`: links are verified. `uncertain`: a song was read but no platform result matched; `track` is the best guess and `links` is empty. `not_found`: no song in the image. |
 | `links`       | Only verified platforms. Keys: `appleMusic`, `spotify`, `deezer`, `youtube`, `youtubeMusic`. Clients should show unknown keys generically.                                     |
 | `searchLinks` | Spotify and YouTube search URLs for the title and artist that were read.                                                                                                       |
-| `extracted`   | What Claude read: `title`, `artist`, `player` (`spotify`, `apple_music` or `unknown`) and `confidence` (0–1).                                                                  |
+| `extracted`   | What Claude read: `title`, `artist`, `player` (`spotify`, `apple_music` or `unknown`) and `confidence` (0 to 1).                                                               |
 | `track`       | Title, artist, album and artwork URL from the matched platform.                                                                                                                |
 | `partial`     | `true` if a platform failed or timed out; the others' links are still there.                                                                                                   |
 | `cached`      | `true` if the answer came from the cache.                                                                                                                                      |
@@ -167,29 +167,29 @@ Errors are `{ "error": { "code", "message" } }`: `400 missing_image`, `401 unaut
 
 Set in `packages/song-resolver/wrangler.jsonc` (`vars`), or as secrets by the setup script or in the Cloudflare dashboard (the Worker's **Settings**, runtime **Variables and secrets**).
 
-| Name                                          | Kind   | Default             | What it does                                                                                |
-| --------------------------------------------- | ------ | ------------------- | ------------------------------------------------------------------------------------------- |
-| `ANTHROPIC_API_KEY`                           | secret | required            | Reads the screenshot.                                                                       |
-| `ACCESS_TOKEN`                                | secret | required            | Shared secret your apps send. Requests without it are rejected before anything costs money. |
-| `SPOTIFY_CLIENT_ID` / `SPOTIFY_CLIENT_SECRET` | secret | none                | Direct Spotify links.                                                                       |
-| `YOUTUBE_API_KEY`                             | secret | none                | Direct YouTube and YouTube Music links.                                                     |
-| `MODEL`                                       | var    | `claude-haiku-5-5`  | Model for the first read.                                                                   |
-| `FALLBACK_MODEL`                              | var    | `claude-sonnet-5-5` | Model for one retry when the first read doesn't match. Empty turns the retry off.           |
-| `COUNTRY`                                     | var    | `US`                | Apple Music storefront, Spotify market and YouTube region.                                  |
+| Name                                          | Kind   | Default             | What it does                                                                                      |
+| --------------------------------------------- | ------ | ------------------- | ------------------------------------------------------------------------------------------------- |
+| `ANTHROPIC_API_KEY`                           | secret | required            | Reads the screenshot.                                                                             |
+| `ACCESS_TOKEN`                                | secret | required            | Shared secret your apps send. The Worker rejects requests without it before anything costs money. |
+| `SPOTIFY_CLIENT_ID` / `SPOTIFY_CLIENT_SECRET` | secret | none                | Direct Spotify links.                                                                             |
+| `YOUTUBE_API_KEY`                             | secret | none                | Direct YouTube and YouTube Music links.                                                           |
+| `MODEL`                                       | var    | `claude-haiku-5-5`  | Model for the first read.                                                                         |
+| `FALLBACK_MODEL`                              | var    | `claude-sonnet-5-5` | Model for one retry when the first read doesn't match. Empty turns the retry off.                 |
+| `COUNTRY`                                     | var    | `US`                | Apple Music storefront, Spotify market and YouTube region.                                        |
 
 Change a var, then redeploy with `npm run deploy -w song-resolver`.
 
 ## Troubleshooting
 
 - **`401 unauthorized` right after setup:** new secrets take about 15 seconds to go live. Otherwise, check the token; if it's lost, re-run setup and answer **n** to "Keep it?" to get a new one.
-- **`partial: true`:** a platform was slow (over 4 seconds) or refused the request. iTunes sometimes rate-limits Cloudflare's shared addresses. The other links are still valid, and partial results are only cached for a day.
-- **`uncertain` with no links:** the title or artist was read differently from how the platforms list it, even after the retry. Use the search links. Very small or heavily cropped screenshots are the usual cause.
+- **`partial: true`:** a platform was slow (over 4 seconds) or refused the request. iTunes sometimes rate-limits Cloudflare's shared addresses. The other links are still valid, and the Worker caches partial results for a day only.
+- **`uncertain` with no links:** Claude read the title or artist differently from how the platforms list it, even after the retry. Use the search links. Very small or heavily cropped screenshots are the usual cause.
 - **No Spotify or YouTube links:** the key isn't set, or (YouTube) today's quota is used up. Add the key in the dashboard (see [Option A](#option-a-deploy-button)) or re-run setup.
-- **Watching logs:** `cd packages/song-resolver && npx wrangler tail`. Screenshots, tokens and keys are never logged.
+- **Watching logs:** `cd packages/song-resolver && npx wrangler tail`. The Worker never logs screenshots, tokens or keys.
 
 ## Development
 
-npm workspaces; run from the repo root.
+The repo uses npm workspaces. Run these commands from the repo root.
 
 ```sh
 npm ci
@@ -220,7 +220,7 @@ npm run zip -w chrome-extension       # the release zip (macOS and Linux: uses t
 
 To release the extension, run `npx npm@11 version 0.2.0 -w chrome-extension --no-git-tag-version` (it updates `package.json` and the lockfile; npm 10 also rewrites unrelated lockfile entries), set the same version in `packages/chrome-extension/manifest.json` (the build refuses to run if they differ), commit, and push a tag like `v0.2.0`. The release workflow checks the tag matches, runs the typecheck and all tests, and attaches the zip to a GitHub release.
 
-Use `npm ci`, not `npm install`: npm 10's `npm install` crashes on this workspace without the lockfile. To add a dependency, use `npx npm@11 install <pkg> -w song-resolver`.
+Use `npm ci`, not `npm install`, because npm 10's `npm install` crashes on this workspace without the lockfile. To add a dependency, use `npx npm@11 install <pkg> -w song-resolver`.
 
 ## License
 

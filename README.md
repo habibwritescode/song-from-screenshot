@@ -59,7 +59,7 @@ Cloudflare copies the Worker into a new repo on your GitHub account and redeploy
 
 - **KV namespace** (`CACHE`): choose **Create new**. Don't reuse another Worker's namespace, or the two will share cached results.
 - **`ACCESS_TOKEN`**: paste a long random string (`openssl rand -base64 32` makes one) and keep it: your apps send it with every request.
-- Leave optional keys empty to skip them.
+- The form asks only for the required keys. To add Spotify or YouTube keys afterwards, open the Worker in the Cloudflare dashboard (**Workers & Pages**), go to **Settings**, and under the runtime **Variables and secrets** (not the build ones) click **Add**, choose type **Secret**, and use the names `SPOTIFY_CLIENT_ID` and `SPOTIFY_CLIENT_SECRET`, or `YOUTUBE_API_KEY`. See [Spotify keys](#spotify-keys) and [YouTube key](#youtube-key) for how to get them.
 
 ### Option B: Setup script
 
@@ -165,7 +165,7 @@ Errors are `{ "error": { "code", "message" } }`: `400 missing_image`, `401 unaut
 
 ## Configuration
 
-Set in `packages/song-resolver/wrangler.jsonc` (`vars`) or as secrets by the setup script.
+Set in `packages/song-resolver/wrangler.jsonc` (`vars`), or as secrets by the setup script or in the Cloudflare dashboard (the Worker's **Settings**, runtime **Variables and secrets**).
 
 | Name                                          | Kind   | Default             | What it does                                                                                |
 | --------------------------------------------- | ------ | ------------------- | ------------------------------------------------------------------------------------------- |
@@ -184,7 +184,7 @@ Change a var, then redeploy with `npm run deploy -w song-resolver`.
 - **`401 unauthorized` right after setup:** new secrets take about 15 seconds to go live. Otherwise, check the token; if it's lost, re-run setup and answer **n** to "Keep it?" to get a new one.
 - **`partial: true`:** a platform was slow (over 4 seconds) or refused the request. iTunes sometimes rate-limits Cloudflare's shared addresses. The other links are still valid, and partial results are only cached for a day.
 - **`uncertain` with no links:** the title or artist was read differently from how the platforms list it, even after the retry. Use the search links. Very small or heavily cropped screenshots are the usual cause.
-- **No Spotify or YouTube links:** the key isn't set, or (YouTube) today's quota is used up. Re-run setup to add a key.
+- **No Spotify or YouTube links:** the key isn't set, or (YouTube) today's quota is used up. Add the key in the dashboard (see [Option A](#option-a-deploy-button)) or re-run setup.
 - **Watching logs:** `cd packages/song-resolver && npx wrangler tail`. Screenshots, tokens and keys are never logged.
 
 ## Development
@@ -193,7 +193,7 @@ npm workspaces; run from the repo root.
 
 ```sh
 npm ci
-cp packages/song-resolver/.dev.vars.example packages/song-resolver/.dev.vars   # then fill it in
+cp packages/song-resolver/.dev.vars.example packages/song-resolver/.dev.vars   # fill it in; uncomment the optional keys you use
 npm run dev -w song-resolver          # http://localhost:8787
 npm test -w song-resolver             # mocked tests in the Workers runtime
 npm run test:live -w song-resolver    # real Claude and platform calls on the fixtures; costs a few cents

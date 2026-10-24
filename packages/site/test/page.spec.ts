@@ -86,3 +86,21 @@ test("every link to another site opens in a new tab", async ({ page }) => {
     await expect(link).toHaveAccessibleDescription("Opens in a new tab");
   }
 });
+
+test("robots.txt is a real text file", async ({ request }) => {
+  const response = await request.get("/robots.txt");
+  expect(response.ok()).toBe(true);
+  expect(response.headers()["content-type"]).toContain("text/plain");
+});
+
+test("an unknown address gets a 404 page, not the home page", async ({
+  page,
+}) => {
+  // Nested, so the page's styles and icon must use absolute paths to load.
+  const response = await page.goto("/no/such/page");
+  expect(response?.status()).toBe(404);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    "Page not found.",
+  );
+  await expect(page.locator(".header")).toHaveCSS("display", "flex");
+});

@@ -37,15 +37,6 @@
       "ACCESS_TOKEN": {
         "description": "Required. A long random string your apps send as `Authorization: Bearer <token>`. Generate one with `openssl rand -base64 32` and save it."
       },
-      "SPOTIFY_CLIENT_ID": {
-        "description": "Recommended, for direct Spotify links. Create an app at [developer.spotify.com/dashboard](https://developer.spotify.com/dashboard) (tick **Web API**) and copy its Client ID. Leave empty to skip."
-      },
-      "SPOTIFY_CLIENT_SECRET": {
-        "description": "The same Spotify app's Client secret. Leave empty to skip."
-      },
-      "YOUTUBE_API_KEY": {
-        "description": "Optional. A YouTube Data API v3 key from the Google Cloud console. Leave empty to skip."
-      },
       "CACHE": {
         "description": "Stores results so repeat lookups are instant. Create a new namespace; don't reuse another Worker's."
       }

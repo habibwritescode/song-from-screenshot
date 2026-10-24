@@ -1102,6 +1102,7 @@ p {
   .demo__picker {
     flex-direction: column;
     align-items: stretch;
+    gap: 16px;
   }
 
   /* Two tabs per row at 375 px with the system font. */

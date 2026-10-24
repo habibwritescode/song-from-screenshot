@@ -104,3 +104,15 @@ test("an unknown address gets a 404 page, not the home page", async ({
   );
   await expect(page.locator(".header")).toHaveCSS("display", "flex");
 });
+
+test("the page's text is set in Inter, loaded from the site", async ({
+  page,
+}) => {
+  const status = await page.evaluate(async () => {
+    await document.fonts.ready;
+    return [...document.fonts]
+      .filter((face) => face.family.replaceAll('"', "") === "Inter")
+      .map((face) => face.status);
+  });
+  expect(status).toEqual(["loaded"]);
+});

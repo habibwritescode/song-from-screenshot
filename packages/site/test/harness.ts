@@ -14,8 +14,13 @@ export const test = base.extend<{ problems: string[] }>({
       if (!baseURL) throw new Error("Set use.baseURL in playwright.config.ts");
       const origin = new URL(baseURL).origin;
       page.on("console", (message) => {
-        if (message.type() === "error")
-          problems.push(`console: ${message.text()}`);
+        if (message.type() !== "error") return;
+        // The 404 page's own status is logged as a failed load; tests check
+        // the status themselves. A failed style, image or icon still counts.
+        const ownStatus =
+          message.text().startsWith("Failed to load resource") &&
+          message.location().url === page.url();
+        if (!ownStatus) problems.push(`console: ${message.text()}`);
       });
       page.on("pageerror", (error) =>
         problems.push(`page error: ${error.message}`),

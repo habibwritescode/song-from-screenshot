@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import type { HistoryEntry } from "../src/lib/history";
+import type { HistoryEntry } from "song-resolver/client/history";
 import { renderHistory } from "../src/ui/history-list";
-import * as responses from "./fixtures/responses";
+import * as responses from "song-resolver/client/test/fixtures/responses";
 
 const NOW = Date.UTC(2026, 9, 22, 12);
 

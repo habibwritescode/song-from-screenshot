@@ -1,4 +1,4 @@
-import { createHistory } from "./lib/history";
+import { createHistory } from "song-resolver/client/history";
 import { isConfigured, loadSettings } from "./lib/settings";
 import { renderHistory } from "./ui/history-list";
 

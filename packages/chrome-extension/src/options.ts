@@ -1,4 +1,7 @@
-import { testConnection, type ConnectionResult } from "./lib/api";
+import {
+  testConnection,
+  type ConnectionResult,
+} from "song-resolver/client/api";
 import {
   loadSettings,
   normalizeWorkerUrl,

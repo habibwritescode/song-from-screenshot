@@ -3,7 +3,7 @@
 // on the matched ones come from the deployed Worker's responses the same day;
 // igStoryPartial is kept as recorded. uncertainMisread reproduces Haiku's real
 // "Naarlly" misread of spotify-x-feed.
-import type { ResolveResponse } from "song-resolver/src/types";
+import type { ResolveResponse } from "../../../src/types";
 
 export const xFeed = {
   "status": "matched",

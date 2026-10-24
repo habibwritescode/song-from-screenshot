@@ -1,10 +1,8 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { resolve, testConnection, type Fetch } from "../src/lib/api";
-import { DEFAULT_SETTINGS } from "../src/lib/settings";
+import { resolve, testConnection, type Fetch } from "../api";
 import * as responses from "./fixtures/responses";
 
 const settings = {
-  ...DEFAULT_SETTINGS,
   workerUrl: "https://x.workers.dev",
   token: "secret",
 };

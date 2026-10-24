@@ -7,7 +7,7 @@ import {
   UNREACHABLE_URL,
   X_PAGE,
 } from "./harness";
-import { xFeed } from "../fixtures/responses";
+import { xFeed } from "song-resolver/client/test/fixtures/responses.ts";
 
 test("when extension storage fails, the card offers Try again, which works once it's back", async ({
   page,

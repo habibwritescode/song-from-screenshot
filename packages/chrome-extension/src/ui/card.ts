@@ -1,6 +1,6 @@
 import type { ResolveResponse } from "song-resolver/src/types";
-import type { Outcome, OutcomeError } from "../lib/api";
-import { resultLinks } from "../lib/links";
+import type { Outcome, OutcomeError } from "song-resolver/client/api";
+import { resultLinks } from "song-resolver/client/links";
 import type { Platform } from "../lib/settings";
 import { el, linkList } from "./dom";
 

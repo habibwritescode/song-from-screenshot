@@ -1,5 +1,5 @@
 import { captureImage, convertImage } from "./canvas";
-import { createHistory } from "./lib/history";
+import { createHistory } from "song-resolver/client/history";
 import { findSong, type FindRequest, type FindResult } from "./lib/pipeline";
 import {
   DEFAULT_SETTINGS,

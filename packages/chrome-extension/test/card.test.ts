@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
-import type { Outcome, OutcomeError } from "../src/lib/api";
+import type { Outcome, OutcomeError } from "song-resolver/client/api";
 import { renderCard, type CardActions, type CardState } from "../src/ui/card";
-import * as responses from "./fixtures/responses";
+import * as responses from "song-resolver/client/test/fixtures/responses";
 
 const ARTWORK = "data:image/jpeg;base64,/9j/4AAQ";
 

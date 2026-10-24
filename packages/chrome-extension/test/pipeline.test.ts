@@ -1,8 +1,8 @@
 import { describe, expect, it, vi } from "vitest";
-import type { Fetch } from "../src/lib/api";
+import type { Fetch } from "song-resolver/client/api";
 import { findSong, type FindRequest } from "../src/lib/pipeline";
 import { DEFAULT_SETTINGS, type Settings } from "../src/lib/settings";
-import { xFeed } from "./fixtures/responses";
+import { xFeed } from "song-resolver/client/test/fixtures/responses";
 
 const settings: Settings = {
   ...DEFAULT_SETTINGS,

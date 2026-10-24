@@ -1,4 +1,4 @@
-import type { ResolveResponse } from "song-resolver/src/types";
+import type { ResolveResponse } from "../src/types";
 
 export const HISTORY_LIMIT = 10;
 const KEY = "history";

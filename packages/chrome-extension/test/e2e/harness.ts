@@ -19,7 +19,7 @@ import {
   noPlayer,
   slideTackle,
   xFeed,
-} from "../fixtures/responses";
+} from "song-resolver/client/test/fixtures/responses.ts";
 
 // Every request goes through Playwright routes, including the service
 // worker's, so the fixture pages are served at the real X and Instagram

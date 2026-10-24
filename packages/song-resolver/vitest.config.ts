@@ -6,14 +6,33 @@ import { defineConfig } from "vitest/config";
 const live = process.env.LIVE === "1";
 
 export default defineConfig({
-  plugins: [cloudflareTest({ wrangler: { configPath: "./wrangler.jsonc" } })],
   test: {
-    include: live ? ["test/live.test.ts"] : ["test/**/*.test.ts"],
-    exclude: live ? [] : ["test/live.test.ts"],
-    testTimeout: live ? 60_000 : 5_000,
+    // With LIVE=1 the client project has nothing to run.
+    passWithNoTests: true,
     coverage: {
       provider: "istanbul",
-      include: ["src/**"],
+      include: ["src/**", "client/**"],
+      exclude: ["client/test/**"],
     },
+    projects: [
+      {
+        plugins: [
+          cloudflareTest({ wrangler: { configPath: "./wrangler.jsonc" } }),
+        ],
+        test: {
+          name: "worker",
+          include: live ? ["test/live.test.ts"] : ["test/**/*.test.ts"],
+          exclude: live ? [] : ["test/live.test.ts"],
+          testTimeout: live ? 60_000 : 5_000,
+        },
+      },
+      // Code shared by the browser clients runs in Node, not workerd.
+      {
+        test: {
+          name: "client",
+          include: live ? [] : ["client/test/**/*.test.ts"],
+        },
+      },
+    ],
   },
 });

@@ -1,10 +1,6 @@
-import { resolve, type Fetch, type Outcome } from "./api";
-import {
-  blobToDataUrl,
-  sniffImageType,
-  type Box,
-  type Size,
-} from "./image-bytes";
+import { resolve, type Fetch, type Outcome } from "song-resolver/client/api";
+import { sniffImageType, workerAccepts } from "song-resolver/client/normalize";
+import { blobToDataUrl, type Box, type Size } from "./image-bytes";
 import { bestImageUrl } from "./image-url";
 import { isConfigured, type Settings } from "./settings";
 
@@ -43,12 +39,6 @@ export interface PipelineDeps {
 const IMAGE_TIMEOUT_MS = 10_000;
 // Bigger files aren't screenshots, and reading them would stall the worker.
 const MAX_DOWNLOAD_BYTES = 25 * 1024 * 1024;
-// What song-resolver accepts.
-const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
-const WORKER_TYPES = new Set(["image/png", "image/jpeg", "image/webp"]);
-
-const workerAccepts = (image: Blob) =>
-  WORKER_TYPES.has(image.type) && image.size <= MAX_UPLOAD_BYTES;
 
 async function download(url: string, fetchFn: Fetch): Promise<Blob | null> {
   try {

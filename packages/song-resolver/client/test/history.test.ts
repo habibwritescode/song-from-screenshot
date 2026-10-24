@@ -1,12 +1,12 @@
 import { describe, expect, it } from "vitest";
-import type { ResolveResponse } from "song-resolver/src/types";
+import type { ResolveResponse } from "../../src/types";
 import {
   addEntry,
   createHistory,
   HISTORY_LIMIT,
   timeAgo,
   type HistoryStorage,
-} from "../src/lib/history";
+} from "../history";
 import * as responses from "./fixtures/responses";
 
 const song = (title: string, artist = "Artist"): ResolveResponse => ({

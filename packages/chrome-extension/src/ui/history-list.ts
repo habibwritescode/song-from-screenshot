@@ -1,5 +1,5 @@
-import { timeAgo, type HistoryEntry } from "../lib/history";
-import { isWebUrl, resultLinks } from "../lib/links";
+import { timeAgo, type HistoryEntry } from "song-resolver/client/history";
+import { isWebUrl, resultLinks } from "song-resolver/client/links";
 import type { Platform } from "../lib/settings";
 import { el, linkAnchor, linkList } from "./dom";
 

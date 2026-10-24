@@ -12,7 +12,7 @@ import {
   igStoryPartial,
   slideTackle,
   xFeed,
-} from "../fixtures/responses";
+} from "song-resolver/client/test/fixtures/responses.ts";
 
 test("X: hover, Find song, and the card links every platform, preferred first", async ({
   page,

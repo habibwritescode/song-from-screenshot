@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { linkLabel, orderedLinks } from "../src/lib/links";
+import { linkLabel, orderedLinks } from "../links";
 import { xFeed } from "./fixtures/responses";
 
 const keys = (links: { key: string }[]) => links.map((link) => link.key);

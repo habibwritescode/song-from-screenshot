@@ -1,4 +1,4 @@
-import { isWebUrl, type LinkButton } from "../lib/links";
+import { isWebUrl, type LinkButton } from "song-resolver/client/links";
 
 export function el<K extends keyof HTMLElementTagNameMap>(
   tag: K,

@@ -1,5 +1,5 @@
-import type { ResolveResponse } from "song-resolver/src/types";
-import { PLATFORM_LABELS, PLATFORMS, type Platform } from "./settings";
+import type { ResolveResponse } from "../src/types";
+import { PLATFORM_LABELS, PLATFORMS, type Platform } from "./platforms";
 
 export interface LinkButton {
   key: string;

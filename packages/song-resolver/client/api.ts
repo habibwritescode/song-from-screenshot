@@ -1,9 +1,10 @@
-import type {
-  ErrorCode,
-  ErrorResponse,
-  ResolveResponse,
-} from "song-resolver/src/types";
-import { isConfigured, type Settings } from "./settings";
+import type { ErrorCode, ErrorResponse, ResolveResponse } from "../src/types";
+
+/** Where a client sends lookups. Either part empty means not set up yet. */
+export interface Connection {
+  workerUrl: string;
+  token: string;
+}
 
 export type Fetch = typeof fetch;
 
@@ -74,11 +75,13 @@ async function request(
   }
 }
 
+export function isErrorCode(code: unknown): code is ErrorCode {
+  return typeof code === "string" && Object.hasOwn(KNOWN_ERROR_CODES, code);
+}
+
 function errorCode(body: unknown): ErrorCode | null {
   const code = (body as Partial<ErrorResponse> | null)?.error?.code;
-  return typeof code === "string" && Object.hasOwn(KNOWN_ERROR_CODES, code)
-    ? (code as ErrorCode)
-    : null;
+  return isErrorCode(code) ? code : null;
 }
 
 function isResolveResponse(body: unknown): body is ResolveResponse {
@@ -96,11 +99,13 @@ function post(token: string, form: FormData): RequestInit {
 
 export async function resolve(
   image: Blob,
-  settings: Settings,
+  settings: Connection,
   fetchFn: Fetch,
   timeoutMs = RESOLVE_TIMEOUT_MS,
 ): Promise<Outcome> {
-  if (!isConfigured(settings)) return { kind: "error", code: "not_configured" };
+  if (!settings.workerUrl || !settings.token) {
+    return { kind: "error", code: "not_configured" };
+  }
 
   const form = new FormData();
   form.append("image", image, "screenshot");
@@ -128,7 +133,7 @@ export async function resolve(
  * missing_image and no Claude call is made.
  */
 export async function testConnection(
-  settings: Pick<Settings, "workerUrl" | "token">,
+  settings: Connection,
   fetchFn: Fetch,
 ): Promise<ConnectionResult> {
   const health = await request(

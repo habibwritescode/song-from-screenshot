@@ -1,5 +1,6 @@
 import { pickImage } from "./lib/find-image";
-import { blobToDataUrl, sniffImageType } from "./lib/image-bytes";
+import { sniffImageType } from "song-resolver/client/normalize";
+import { blobToDataUrl } from "./lib/image-bytes";
 import type { FindRequest, FindResult } from "./lib/pipeline";
 import { DEFAULT_SETTINGS, type DisplaySettings } from "./lib/settings";
 import { createHoverButton } from "./ui/button";

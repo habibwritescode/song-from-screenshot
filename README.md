@@ -31,7 +31,7 @@ curl -H "Authorization: Bearer $TOKEN" -F image=@screenshot.png https://song-res
 }
 ```
 
-There's a [Chrome extension](#chrome-extension) that calls it from X, Instagram or any page. A phone share-sheet shortcut is planned.
+There's a [Chrome extension](#chrome-extension) that calls it from X, Instagram or any page, and your Worker also serves a [phone app](#use-it-on-your-phone): share a screenshot to it on Android, or through a Shortcut on iPhone.
 
 ## How it works
 
@@ -110,6 +110,20 @@ To update, download the new zip, replace the folder's contents, and click the re
 
 Screenshots go only to your Worker. Album covers load from the platforms' image servers (Apple Music, Spotify, Deezer). There's no analytics.
 
+## Use it on your phone
+
+Your Worker also serves a small web app at its address, `https://song-resolver.<you>.workers.dev`. It shows the song with a link for each platform, your preferred one first, and keeps your last 10 songs on the phone. Screenshots go only to your Worker.
+
+**Set it up once.** Open your Worker's address on the phone and paste your access token. Or open the one-tap link the setup script prints, `https://<worker>/#token=<token>`: it saves the token and removes it from the address bar. If you deployed with the button, build that link yourself; if your token has `+`, `/` or `=` in it, write them as `%2B`, `%2F` and `%3D`.
+
+**Android.** In Chrome, open the ⋮ menu and choose **Install app** (or **Add to Home screen**). Then, from your gallery or a screenshot's preview, tap **Share** and choose **Find Song**.
+
+**iPhone.** iOS doesn't let web apps receive shares, so a Shortcut does it: it converts the screenshot to JPEG (iPhone screenshots are HEIC), sends it to your Worker, and opens the results in Safari. [Build it in a few minutes](packages/song-resolver/shortcut/README.md); it asks nothing once it's set up. Then tap **Share** on a screenshot and choose **Find Song**.
+
+**Any device.** Open your Worker's address and choose or paste a screenshot.
+
+In **Settings** you can pick your preferred platform and turn on **Open my app directly**, which skips the results page and opens that platform's link when the song is found.
+
 ## Spotify keys
 
 1. Go to <https://developer.spotify.com/dashboard>, log in, and click **Create app**.
@@ -185,6 +199,13 @@ npm test -w song-resolver             # mocked tests in the Workers runtime
 npm run test:live -w song-resolver    # real Claude and platform calls on the fixtures; costs a few cents
 npm run lint
 npm run typecheck -w song-resolver
+```
+
+The phone web app (in `packages/song-resolver/pwa`, built automatically by `wrangler dev` and `wrangler deploy`):
+
+```sh
+npm run build:pwa -w song-resolver    # → packages/song-resolver/pwa/dist
+npm run test:pwa -w song-resolver     # unit tests
 ```
 
 The Chrome extension:

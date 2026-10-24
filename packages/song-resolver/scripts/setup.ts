@@ -11,6 +11,7 @@ import { randomBytes } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { createInterface } from "node:readline/promises";
 import { Writable } from "node:stream";
+import { phoneSetupLink } from "./setup-link.ts";
 
 interface SecretPrompt {
   name: string;
@@ -187,6 +188,15 @@ async function main() {
   if (newToken) {
     console.log(
       `\nAccess token (shown once; save it in your password manager and in the apps):\n\n  ${newToken}\n`,
+    );
+    if (url) {
+      console.log(
+        `Phone app: open this on your phone to set it up in one tap (it contains the token, so don't share it):\n\n  ${phoneSetupLink(url, newToken)}\n`,
+      );
+    }
+  } else if (url) {
+    console.log(
+      `\nPhone app: open ${url}/#token=<your token> on your phone to set it up in one tap.\n`,
     );
   }
   console.log(

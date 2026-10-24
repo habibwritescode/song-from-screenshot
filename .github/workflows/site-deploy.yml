@@ -1,0 +1,37 @@
+name: Deploy site
+
+# Only pushes to main, never pull requests, so forks can't reach the token.
+on:
+  push:
+    branches: [main]
+    paths: ["packages/site/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: site-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # Put the Cloudflare secrets on this environment, not the repository, so only this job can read them.
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # What CI checks for the site, so an untested commit can't go live.
+      - run: npm run lint
+      - run: npm run typecheck -w site
+      - run: npx playwright install --with-deps chromium
+      - run: npm test -w site
+      - run: npm run deploy -w site
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

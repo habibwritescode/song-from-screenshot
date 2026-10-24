@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Song from Screenshot</title>
+    <meta
+      name="description"
+      content="Find the song in a screenshot of a music player, with a link for every platform. Open source and self-hosted."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href="https://song-from-screenshot.pages.dev/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://song-from-screenshot.pages.dev/" />
+    <meta property="og:site_name" content="Song from Screenshot" />
+    <meta property="og:title" content="Song from Screenshot" />
+    <meta
+      property="og:description"
+      content="Screenshot in, links out: the song from any Now Playing screenshot, on every platform. Open source and self-hosted."
+    />
+    <meta
+      property="og:image"
+      content="https://song-from-screenshot.pages.dev/og.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Song from Screenshot: a Spotify screenshot of EGO by Naarly next to its result card with links to every platform"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <p id="new-tab" hidden>Opens in a new tab</p>
+    <header class="header container">
+      <a class="brand" href="./">
+        <img src="favicon.svg" width="32" height="32" alt="" />
+        Song from Screenshot
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a class="nav__link" href="#how-it-works">How it works</a>
+        <a class="nav__link" href="#get-it">Get it</a>
+        <a
+          class="button button--small"
+          href="https://github.com/habibwritescode/song-from-screenshot"
+          target="_blank"
+          rel="noopener"
+          aria-describedby="new-tab"
+          >GitHub</a
+        >
+      </nav>
+    </header>
+
+    <main class="container">
+      <div class="hero">
+        <h1 class="hero__title">
+          Saw a song<br />
+          in a screenshot?<br />
+          Get the link.
+        </h1>
+        <div class="hero__lead">
+          <p>
+            Drop in a Spotify or Apple Music Now Playing screenshot from X or
+            Instagram. Get the same song on every platform, and never a wrong
+            one.
+          </p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="#get-it">Set up your own</a>
+            <a
+              class="button"
+              href="https://github.com/habibwritescode/song-from-screenshot"
+              target="_blank"
+              rel="noopener"
+              aria-describedby="new-tab"
+              >View on GitHub</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!--
+        The example picker is a radio group so it works with no script: the
+        checked radio shows its example through :has() on .demo, and arrow keys
+        move between radios natively.
+      -->
+      <section class="demo" aria-label="Examples">
+        <fieldset class="demo__picker">
+          <legend class="demo__label">Try an example</legend>
+          <div class="demo__tabs">
+            <input
+              class="visually-hidden"
+              type="radio"
+              name="example"
+              id="ex-x-feed"
+              checked
+            />
+            <label for="ex-x-feed">Spotify on X</label>
+            <input
+              class="visually-hidden"
+              type="radio"
+              name="example"
+              id="ex-fein"
+            />
+            <label for="ex-fein">Apple Music on Android</label>
+            <input
+              class="visually-hidden"
+              type="radio"
+              name="example"
+              id="ex-ig-story"
+            />
+            <label for="ex-ig-story">Instagram story</label>
+            <input
+              class="visually-hidden"
+              type="radio"
+              name="example"
+              id="ex-no-player"
+            />
+            <label for="ex-no-player">A post with no song</label>
+          </div>
+        </fieldset>
+
+        <div class="demo__stage">
+          <figure class="demo__example" data-for="ex-x-feed">
+            <div class="shot">
+              <img
+                src="demo/spotify-x-feed.webp"
+                width="420"
+                height="520"
+                alt="Spotify's Now Playing screen shared in a post on X, playing EGO by Naarly"
+              />
+              <svg
+                class="viewfinder"
+                viewBox="0 0 156 72"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 18V8a6 6 0 0 1 6-6h12" />
+                <path d="M136 2h12a6 6 0 0 1 6 6v10" />
+                <path d="M154 54v10a6 6 0 0 1-6 6h-12" />
+                <path d="M20 70H8a6 6 0 0 1-6-6V54" />
+              </svg>
+            </div>
+            <div class="connector">
+              <span class="connector__line" aria-hidden="true"></span>
+              <p class="read">
+                <span class="read__label">Read</span> EGO · Naarly
+              </p>
+              <span class="connector__line" aria-hidden="true"></span>
+              <svg
+                class="connector__arrow"
+                viewBox="0 0 10 14"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 2l6 5-6 5" />
+              </svg>
+            </div>
+            <article class="card" aria-label="Result">
+              <div class="track">
+                <img
+                  class="artwork"
+                  src="demo/cover-ego.webp"
+                  width="64"
+                  height="64"
+                  alt=""
+                />
+                <div class="track__text">
+                  <strong class="title">EGO</strong>
+                  <span class="artist">Naarly</span>
+                  <span class="album">EGO - Single</span>
+                </div>
+              </div>
+              <ul class="links">
+                <li>
+                  <a
+                    class="link link--preferred"
+                    href="https://open.spotify.com/track/3veGiQJuodUItZWeWyPaXA"
+                    target="_blank"
+                    rel="noopener"
+                    aria-describedby="new-tab"
+                    >Spotify <span aria-hidden="true">↗</span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="link"
+                    href="https://music.apple.com/us/album/ego/6812371750?i=6812371751"
+                    target="_blank"
+                    rel="noopener"
+                    aria-describedby="new-tab"
+                    >Apple Music <span aria-hidden="true">↗</span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="link"
+                    href="https://music.youtube.com/watch?v=MXNiK_WAeJk"
+                    target="_blank"
+                    rel="noopener"
+                    aria-describedby="new-tab"
+                    >YouTube Music <span aria-hidden="true">↗</span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="link"
+                    href="https://www.youtube.com/watch?v=MXNiK_WAeJk"
+                    target="_blank"
+                    rel="noopener"
+                    aria-describedby="new-tab"
+                    >YouTube <span aria-hidden="true">↗</span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="link"
+                    href="https://www.deezer.com/track/4287819182"
+                    target="_blank"
+                    rel="noopener"
+                    aria-describedby="new-tab"
+                    >Deezer <span aria-hidden="true">↗</span></a
+                  >
+                </li>
+              </ul>
+            </article>
+          </figure>
+
+          <figure class="demo__example" data-for="ex-fein">
+            <div class="shot">
+              <img
+                src="demo/apple-music-android-fein.webp"
+                width="840"
+                height="1040"
+                alt="Apple Music's Now Playing screen on Android, playing FE!N (feat. Playboi Carti) by Travis Scott"
+              />
+              <svg
+                class="viewfinder"
+                viewBox="0 0 256 72"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 18V8a6 6 0 0 1 6-6h12" />
+                <path d="M236 2h12a6 6 0 0 1 6 6v10" />
+                <path d="M254 54v10a6 6 0 0 1-6 6h-12" />
+                <path d="M20 70H8a6 6 0 0 1-6-6V54" />
+              </svg>
+            </div>
+            <div class="connector">
+              <span class="connector__line" aria-hidden="true"></span>
+              <p class="read">
+                <span class="read__label">Read</span> FE!N · Travis Scott
+              </p>
+              <span class="connector__line" aria-hidden="true"></span>
+              <svg
+                class="connector__arrow"
+                viewBox="0 0 10 14"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 2l6 5-6 5" />
+              </svg>
+            </div>
+            <article class="card" aria-label="Result">
+              <div class="track">
+                <img
+                  class="artwork"
+                  src="demo/cover-fein.webp"
+                  width="64"
+                  height="64"
+                  alt=""
+                />
+                <div class="track__text">
+                  <strong class="title">FE!N (feat. Playboi Carti)</strong>
+                  <span class="artist">Travis Scott</span>
+                  <span class="album">UTOPIA</span>
+                </div>
+              </div>
+              <ul class="links">
+                <li>
+                  <a
+                    class="link link--preferred"
+                    href="https://open.spotify.com/track/42VsgItocQwOQC3XWZ8JNA"
+                    target="_blank"
+                    rel="noopener"
+                    aria-describedby="new-tab"
+                    >Spotify <span aria-hidden="true">↗</span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="link"
+                    href="https://music.apple.com/us/album/fe-n-feat-playboi-carti/1708274558?i=1708274783"
+                    target="_blank"
+                    rel="noopener"
+                    aria-describedby="new-tab"
+                    >Apple Music <span aria-hidden="true">↗</span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="link"
+                    href="https://music.youtube.com/watch?v=P_X6JCMVMQ8"
+                    target="_blank"
+                    rel="noopener"
+                    aria-describedby="new-tab"
+                    >YouTube Music <span aria-hidden="true">↗</span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="link"
+                    href="https://www.youtube.com/watch?v=P_X6JCMVMQ8"
+                    target="_blank"
+                    rel="noopener"
+                    aria-describedby="new-tab"
+                    >YouTube <span aria-hidden="true">↗</span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="link"
+                    href="https://www.deezer.com/track/2386586085"
+                    target="_blank"
+                    rel="noopener"
+                    aria-describedby="new-tab"
+                    >Deezer <span aria-hidden="true">↗</span></a
+                  >
+                </li>
+              </ul>
+            </article>
+          </figure>
+
+          <figure class="demo__example" data-for="ex-ig-story">
+            <div class="shot">
+              <img
+                src="demo/spotify-ig-story.webp"
+                width="519"
+                height="643"
+                alt="Spotify's Now Playing screen shared in an Instagram story, playing EGO by Naarly"
+              />
+              <svg
+                class="viewfinder"
+                viewBox="0 0 176 76"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 18V8a6 6 0 0 1 6-6h12" />
+                <path d="M156 2h12a6 6 0 0 1 6 6v10" />
+                <path d="M174 58v10a6 6 0 0 1-6 6h-12" />
+                <path d="M20 74H8a6 6 0 0 1-6-6V58" />
+              </svg>
+            </div>
+            <div class="connector">
+              <span class="connector__line" aria-hidden="true"></span>
+              <p class="read">
+                <span class="read__label">Read</span> EGO · Naarly
+              </p>
+              <span class="connector__line" aria-hidden="true"></span>
+              <svg
+                class="connector__arrow"
+                viewBox="0 0 10 14"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 2l6 5-6 5" />
+              </svg>
+            </div>
+            <article class="card" aria-label="Result">
+              <div class="track">
+                <img
+                  class="artwork"
+                  src="demo/cover-ego.webp"
+                  width="64"
+                  height="64"
+                  alt=""
+                />
+                <div class="track__text">
+                  <strong class="title">EGO</strong>
+                  <span class="artist">Naarly</span>
+                  <span class="album">EGO - Single</span>
+                </div>
+              </div>
+              <ul class="links">
+                <li>
+                  <a
+                    class="link link--preferred"
+                    href="https://open.spotify.com/track/3veGiQJuodUItZWeWyPaXA"
+                    target="_blank"
+                    rel="noopener"
+                    aria-describedby="new-tab"
+                    >Spotify <span aria-hidden="true">↗</span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="link"
+                    href="https://music.apple.com/us/album/ego/6812371750?i=6812371751"
+                    target="_blank"
+                    rel="noopener"
+                    aria-describedby="new-tab"
+                    >Apple Music <span aria-hidden="true">↗</span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="link"
+                    href="https://music.youtube.com/watch?v=MXNiK_WAeJk"
+                    target="_blank"
+                    rel="noopener"
+                    aria-describedby="new-tab"
+                    >YouTube Music <span aria-hidden="true">↗</span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="link"
+                    href="https://www.youtube.com/watch?v=MXNiK_WAeJk"
+                    target="_blank"
+                    rel="noopener"
+                    aria-describedby="new-tab"
+                    >YouTube <span aria-hidden="true">↗</span></a
+                  >
+                </li>
+              </ul>
+              <p class="note">Some platforms didn't answer.</p>
+            </article>
+          </figure>
+
+          <figure class="demo__example" data-for="ex-no-player">
+            <div class="shot">
+              <img
+                src="demo/no-player-tweet.webp"
+                width="656"
+                height="812"
+                alt="A text-only post on X with no music player in it"
+              />
+            </div>
+            <div class="connector">
+              <span class="connector__line" aria-hidden="true"></span>
+              <p class="read">
+                <span class="read__label">Read</span> No player
+              </p>
+              <span class="connector__line" aria-hidden="true"></span>
+              <svg
+                class="connector__arrow"
+                viewBox="0 0 10 14"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 2l6 5-6 5" />
+              </svg>
+            </div>
+            <article class="card" aria-label="Result">
+              <p class="message">No song found in this image.</p>
+            </article>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section" id="how-it-works" aria-labelledby="how-title">
+        <p class="eyebrow">How it works</p>
+        <h2 class="section__title" id="how-title">
+          No link beats a wrong link.
+        </h2>
+        <ol class="steps">
+          <li class="step">
+            <h3 class="step__title">Claude reads the player</h3>
+            <p>
+              Just the title and artist. Post text, playlist names, device names
+              and badges are ignored.
+            </p>
+          </li>
+          <li class="step">
+            <h3 class="step__title">Every platform, at once</h3>
+            <p>
+              Apple Music, Spotify, Deezer and YouTube are searched at the same
+              time.
+            </p>
+          </li>
+          <li class="step">
+            <h3 class="step__title">Only exact matches</h3>
+            <p>
+              Same title, same artist, or no link. Remixes, covers, live
+              versions and fan uploads don't count.
+            </p>
+          </li>
+          <li class="step">
+            <h3 class="step__title">Instant the second time</h3>
+            <p>
+              Results are cached, so the same screenshot or song comes back in
+              milliseconds.
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section" aria-labelledby="where-title">
+        <p class="eyebrow">Where you can use it</p>
+        <h2 class="section__title" id="where-title">Right where you saw it.</h2>
+        <div class="clients">
+          <article class="client client--wide">
+            <div class="client__visual client__visual--extension">
+              <span class="find-pill" aria-hidden="true">♪ Find song</span>
+              <picture>
+                <source
+                  srcset="extension-card-dark.webp"
+                  media="(prefers-color-scheme: dark)"
+                />
+                <img
+                  src="extension-card.webp"
+                  width="684"
+                  height="680"
+                  alt="The extension's result card for EGO by Naarly, with links to Spotify, Apple Music, YouTube Music, YouTube and Deezer"
+                />
+              </picture>
+            </div>
+            <div class="client__copy">
+              <p class="status">Available now</p>
+              <h3 class="client__title">Chrome extension</h3>
+              <p>
+                On X and Instagram, hover over an image and click Find song. On
+                any other site, right-click an image. The song shows up right
+                next to it, and the toolbar keeps your last 10.
+              </p>
+              <a
+                class="text-link"
+                href="https://github.com/habibwritescode/song-from-screenshot/releases/latest"
+                target="_blank"
+                rel="noopener"
+                aria-describedby="new-tab"
+                >Download the extension ↗</a
+              >
+            </div>
+          </article>
+          <article class="client">
+            <div
+              class="client__visual client__visual--phone"
+              aria-hidden="true"
+            >
+              <div class="sheet">
+                <span class="sheet__grabber"></span>
+                <span class="sheet__title">Share</span>
+                <span class="sheet__apps">
+                  <span class="sheet__app sheet__app--ours">
+                    <img src="favicon.svg" width="48" height="48" alt="" />
+                    Find Song
+                  </span>
+                  <span class="sheet__app"
+                    ><span class="sheet__tile"></span>Messages</span
+                  >
+                  <span class="sheet__app"
+                    ><span class="sheet__tile"></span>Copy</span
+                  >
+                  <span class="sheet__app sheet__app--extra"
+                    ><span class="sheet__tile"></span>Save</span
+                  >
+                </span>
+              </div>
+            </div>
+            <div class="client__copy">
+              <p class="status">Available now</p>
+              <h3 class="client__title">Phone share sheet</h3>
+              <p>
+                Tap Share on a screenshot and choose Find Song. Android installs
+                it from Chrome; iPhone uses a Shortcut.
+              </p>
+              <a
+                class="text-link"
+                href="https://github.com/habibwritescode/song-from-screenshot#use-it-on-your-phone"
+                target="_blank"
+                rel="noopener"
+                aria-describedby="new-tab"
+                >Set it up on your phone ↗</a
+              >
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="get-it" id="get-it" aria-labelledby="get-it-title">
+        <p class="eyebrow eyebrow--panel">Get it</p>
+        <h2 class="section__title get-it__title" id="get-it-title">
+          Run your own copy. Your keys, your screenshots.
+        </h2>
+        <div class="options">
+          <div class="option option--self-host">
+            <h3 class="option__title">
+              Self-host <span class="tag tag--filled">Available now</span>
+            </h3>
+            <div class="needs">
+              <p class="eyebrow eyebrow--panel">You need</p>
+              <p>
+                A Cloudflare account (free) and a Claude API key with a little
+                credit. Optional: a Spotify developer app and a YouTube Data API
+                key, both free.
+              </p>
+            </div>
+            <div class="setup">
+              <a
+                class="deploy"
+                href="https://deploy.workers.cloudflare.com/?url=https://github.com/habibwritescode/song-from-screenshot/tree/main/packages/song-resolver"
+                target="_blank"
+                rel="noopener"
+                aria-describedby="new-tab"
+                ><img
+                  src="deploy-button.svg"
+                  width="221"
+                  height="47"
+                  alt="Deploy to Cloudflare"
+              /></a>
+              <span class="setup__or">or</span>
+              <code class="setup__code">npm run setup -w song-resolver</code>
+            </div>
+            <p class="option__links">
+              <a
+                class="text-link"
+                href="https://github.com/habibwritescode/song-from-screenshot#set-up-your-own"
+                target="_blank"
+                rel="noopener"
+                aria-describedby="new-tab"
+                >Full setup steps on GitHub ↗</a
+              >
+              <a
+                class="text-link"
+                href="https://github.com/habibwritescode/song-from-screenshot/releases/latest"
+                target="_blank"
+                rel="noopener"
+                aria-describedby="new-tab"
+                >Download the Chrome extension ↗</a
+              >
+            </p>
+          </div>
+          <div class="option option--hosted">
+            <h3 class="option__title">
+              Hosted <span class="tag">Coming soon</span>
+            </h3>
+            <p>
+              The same thing with nothing to set up. Sign in and start finding
+              songs.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section cost" aria-labelledby="cost-title">
+        <div class="cost__heading">
+          <p class="eyebrow">Cost and privacy</p>
+          <h2 class="section__title" id="cost-title">
+            Fractions of a cent. Nothing kept.
+          </h2>
+        </div>
+        <dl class="facts">
+          <div class="fact">
+            <dt>$0.0004</dt>
+            <dd>
+              Claude usage per new screenshot. About 1¢ when it takes a second,
+              stronger read.
+            </dd>
+          </div>
+          <div class="fact">
+            <dt>$0</dt>
+            <dd>
+              Cloudflare's free plan, Spotify's API and YouTube's free quota of
+              about 100 new songs a day.
+            </dd>
+          </div>
+          <div class="fact">
+            <dt>Private</dt>
+            <dd>
+              Your screenshots go only to your own copy and to Claude. Only the
+              song is remembered, never the image.
+            </dd>
+          </div>
+        </dl>
+      </section>
+    </main>
+
+    <footer class="footer container">
+      <p class="footer__brand">
+        <img src="favicon.svg" width="24" height="24" alt="" />
+        <strong>Song from Screenshot</strong>
+        <span>Open source, MIT license</span>
+      </p>
+      <nav class="footer__links" aria-label="Footer">
+        <a
+          href="https://github.com/habibwritescode/song-from-screenshot"
+          target="_blank"
+          rel="noopener"
+          aria-describedby="new-tab"
+          >GitHub</a
+        >
+        <a
+          href="https://github.com/habibwritescode/song-from-screenshot/releases/latest"
+          target="_blank"
+          rel="noopener"
+          aria-describedby="new-tab"
+          >Chrome extension</a
+        >
+        <a
+          href="https://github.com/habibwritescode/song-from-screenshot#set-up-your-own"
+          target="_blank"
+          rel="noopener"
+          aria-describedby="new-tab"
+          >Setup guide</a
+        >
+      </nav>
+    </footer>
+  </body>
+</html>

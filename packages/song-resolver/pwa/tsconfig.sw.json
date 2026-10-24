@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    // The service worker has worker globals, not the page's DOM.
+    "lib": ["ES2022", "WebWorker"]
+  },
+  "include": ["src/sw.ts"],
+  "exclude": []
+}

@@ -5,6 +5,13 @@
   "compatibility_date": "2026-10-01",
   "compatibility_flags": ["nodejs_compat"],
   "kv_namespaces": [{ "binding": "CACHE" }],
+  // The phone web app (pwa/) is served as static assets. Only the API and
+  // the share-target fallback reach the Worker's code.
+  "assets": {
+    "directory": "./pwa/dist",
+    "run_worker_first": ["/api/*", "/share"],
+  },
+  "build": { "command": "npm run build:pwa", "watch_dir": "pwa/src" },
   "vars": {
     "MODEL": "claude-haiku-5-5",
     "FALLBACK_MODEL": "claude-sonnet-5-5",

@@ -60,6 +60,10 @@ export function createApp(deps: AppDeps = defaultDeps) {
 
   app.get("/api/health", (c) => c.json({ ok: true, version: pkg.version }));
 
+  // The web app's service worker answers Android's share target itself. This
+  // only runs before it's installed (first visit, or site data cleared).
+  app.post("/share", (c) => c.redirect("/?share=unavailable", 303));
+
   app.post("/api/resolve", async (c) => {
     if (
       !(await isAuthorized(c.req.header("Authorization"), c.env.ACCESS_TOKEN))

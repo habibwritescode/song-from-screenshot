@@ -7,9 +7,12 @@
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p pwa && tsc --noEmit -p pwa/tsconfig.sw.json",
     "test:live": "LIVE=1 vitest run",
-    "setup": "node --experimental-strip-types --disable-warning=ExperimentalWarning scripts/setup.ts"
+    "setup": "node --experimental-strip-types --disable-warning=ExperimentalWarning scripts/setup.ts",
+    "build:pwa": "node pwa/build.mjs",
+    "test:pwa": "vitest run --config pwa/vitest.config.ts",
+    "test:pwa:e2e": "npm run build:pwa && playwright test --config pwa/playwright.config.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.137.0",
@@ -18,15 +21,18 @@
   "devDependencies": {
     "@cloudflare/vitest-plugin": "^1.4.6",
     "@cloudflare/workers-types": "^5.20261021.1",
+    "@playwright/test": "^1.64.1",
     "@types/node": "^22.20.5",
     "@vitest/coverage-istanbul": "^5.0.5",
+    "esbuild": "^0.28.2",
+    "happy-dom": "^21.0.4",
     "vitest": "^5.0.5",
     "wrangler": "^4.151.3"
   },
   "cloudflare": {
     "bindings": {
       "ANTHROPIC_API_KEY": {
-        "description": "Required. Create one at [platform.claude.com](https://platform.claude.com) \u2192 **API keys**."
+        "description": "Required. Create one at [platform.claude.com](https://platform.claude.com) → **API keys**."
       },
       "ACCESS_TOKEN": {
         "description": "Required. A long random string your apps send as `Authorization: Bearer <token>`. Generate one with `openssl rand -base64 32` and save it."

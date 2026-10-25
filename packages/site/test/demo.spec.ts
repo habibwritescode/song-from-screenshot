@@ -86,20 +86,31 @@ test("switching examples doesn't change the demo's height", async ({
   expect(heights.size).toBe(1);
 });
 
+// The card starts 12 px low and rises; reduced motion keeps only its fade.
+const cardOffset = (page: Page) =>
+  shown(page)
+    .locator(".card")
+    .evaluate((el) => new DOMMatrix(getComputedStyle(el).transform).m42);
+
 test.describe("with reduced motion", () => {
   test.use({ reducedMotion: "reduce" });
 
-  test("the card appears without animating", async ({ page }) => {
+  test("the card fades in without moving; nothing flashes or draws", async ({
+    page,
+  }) => {
     await page.getByText("Apple Music on Android", { exact: true }).click();
-    const card = shown(page).locator(".card");
-    expect(await card.evaluate((el) => getComputedStyle(el).opacity)).toBe("1");
-    expect(await card.evaluate((el) => el.getAnimations().length)).toBe(0);
+    expect(await cardOffset(page)).toBe(0);
+    for (const still of [".viewfinder", ".connector__line"]) {
+      const element = shown(page).locator(still).first();
+      expect(await element.evaluate((el) => el.getAnimations().length)).toBe(0);
+    }
+    await expect(shown(page).locator(".card")).toHaveCSS("opacity", "1");
   });
 });
 
-test("without reduced motion, the card animates in", async ({ page }) => {
+test("without reduced motion, the card rises into place", async ({ page }) => {
   await page.getByText("Apple Music on Android", { exact: true }).click();
-  const card = shown(page).locator(".card");
-  expect(await card.evaluate((el) => el.getAnimations().length)).toBe(1);
-  await expect(card).toHaveCSS("opacity", "1");
+  expect(await cardOffset(page)).toBeGreaterThan(0);
+  await expect(shown(page).locator(".card")).toHaveCSS("opacity", "1");
+  expect(await cardOffset(page)).toBe(0);
 });

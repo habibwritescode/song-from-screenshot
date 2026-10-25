@@ -33,6 +33,7 @@
   --radius-md: 12px;
   --radius-lg: 20px;
   --radius-pill: 999px;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 
   --color-bg: #ffffff;
   --color-ink: #18181b;
@@ -133,6 +134,21 @@ body {
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* No grey flash on tap for these: they scale on press instead (see "Press feedback"). */
+.button,
+.demo__tabs label,
+.link,
+.deploy {
+  -webkit-tap-highlight-color: transparent;
 }
 
 .container {
@@ -200,10 +216,14 @@ body {
   font-weight: 600;
   line-height: 18px;
   cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-.demo__tabs label:hover {
-  background: var(--color-hover);
+@media (hover: hover) and (pointer: fine) {
+  .demo__tabs label:hover {
+    background: var(--color-hover);
+  }
 }
 
 .demo__tabs input:checked + label {
@@ -397,8 +417,10 @@ body {
   opacity: 0.6;
 }
 
-.link:hover {
-  background: var(--color-hover);
+@media (hover: hover) and (pointer: fine) {
+  .link:hover {
+    background: var(--color-hover);
+  }
 }
 
 .link--preferred,
@@ -431,17 +453,40 @@ body {
 }
 
 /*
- * Switching examples: the newly shown example's viewfinder flashes, then its
- * card fades in and rises. Animations restart whenever an element goes from
+ * Switching examples: the new screenshot fades in, its viewfinder flashes, the
+ * connector draws towards the card with the Read chip, then the card fades in
+ * and rises. Animations restart whenever an element goes from
  * display: none to shown, so no script is needed.
  */
+.demo__example .shot img {
+  animation: fade-in 200ms var(--ease-out);
+}
+
 .demo__example .viewfinder {
   border-radius: 6px;
-  animation: flash 700ms ease-out;
+  animation: flash 700ms var(--ease-out);
+}
+
+.demo__example .connector__line {
+  transform-origin: left;
+  animation: line-in 200ms var(--ease-out) both;
+}
+
+.demo__example .read {
+  animation: fade-in 150ms var(--ease-out) 60ms both;
+}
+
+/* The line after the chip draws a beat later, so the flow reads left to right. */
+.demo__example .read ~ .connector__line {
+  animation-delay: 80ms;
+}
+
+.demo__example .connector__arrow {
+  animation: fade-in 150ms var(--ease-out) 160ms both;
 }
 
 .demo__example .card {
-  animation: card-in 240ms ease-out 120ms both;
+  animation: card-in 240ms var(--ease-out) 120ms both;
 }
 
 @keyframes flash {
@@ -455,6 +500,18 @@ body {
   }
 }
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes line-in {
+  from {
+    transform: scaleX(0);
+  }
+}
+
 @keyframes card-in {
   from {
     opacity: 0;
@@ -462,10 +519,15 @@ body {
   }
 }
 
+/* Reduced motion keeps the fades, which help follow the switch, and drops the movement and the flash. */
 @media (prefers-reduced-motion: reduce) {
   .demo__example .viewfinder,
-  .demo__example .card {
+  .demo__example .connector__line {
     animation: none;
+  }
+
+  .demo__example .card {
+    animation: fade-in 200ms var(--ease-out);
   }
 }
 
@@ -492,6 +554,17 @@ h2,
 h3,
 p {
   margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p,
+dd {
+  text-wrap: pretty;
 }
 
 .eyebrow {
@@ -522,8 +595,10 @@ p {
   white-space: nowrap;
 }
 
-.button:hover {
-  background: var(--color-hover);
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    background: var(--color-hover);
+  }
 }
 
 .button--primary,
@@ -533,9 +608,11 @@ p {
   color: var(--color-on-primary);
 }
 
-.button--primary:hover {
-  border-color: var(--color-primary-hover);
-  background: var(--color-primary-hover);
+@media (hover: hover) and (pointer: fine) {
+  .button--primary:hover {
+    border-color: var(--color-primary-hover);
+    background: var(--color-primary-hover);
+  }
 }
 
 .button--small {
@@ -543,6 +620,25 @@ p {
   font-size: var(--text-small);
   font-weight: 500;
   line-height: 18px;
+}
+
+/* Press feedback on buttons, demo tabs, card links and the Deploy badge. */
+.button,
+.demo__tabs label,
+.link,
+.deploy {
+  transition:
+    transform 160ms var(--ease-out),
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.button:active,
+.demo__tabs label:active,
+.link:active,
+.deploy:active {
+  transform: scale(0.97);
 }
 
 .text-link {
@@ -586,10 +682,13 @@ p {
   font-weight: 500;
   line-height: 18px;
   text-decoration: none;
+  transition: color 150ms ease;
 }
 
-.nav__link:hover {
-  color: var(--color-ink);
+@media (hover: hover) and (pointer: fine) {
+  .nav__link:hover {
+    color: var(--color-ink);
+  }
 }
 
 /* Hero */
@@ -1062,10 +1161,13 @@ p {
   color: var(--color-muted);
   font-weight: 500;
   text-decoration: none;
+  transition: color 150ms ease;
 }
 
-.footer__links a:hover {
-  color: var(--color-ink);
+@media (hover: hover) and (pointer: fine) {
+  .footer__links a:hover {
+    color: var(--color-ink);
+  }
 }
 
 /* 404 page */

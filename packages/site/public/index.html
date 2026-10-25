@@ -93,8 +93,12 @@
         move between radios natively.
       -->
       <section class="demo" aria-label="Examples">
-        <fieldset class="demo__picker">
-          <legend class="demo__label">Try an example</legend>
+        <div
+          class="demo__picker"
+          role="radiogroup"
+          aria-labelledby="demo-label"
+        >
+          <p class="demo__label" id="demo-label">Try an example</p>
           <div class="demo__tabs">
             <input
               class="visually-hidden"
@@ -126,7 +130,7 @@
             />
             <label for="ex-no-player">A post with no song</label>
           </div>
-        </fieldset>
+        </div>
 
         <div class="demo__stage">
           <figure class="demo__example" data-for="ex-x-feed">

@@ -114,3 +114,10 @@ test("without reduced motion, the card rises into place", async ({ page }) => {
   await expect(shown(page).locator(".card")).toHaveCSS("opacity", "1");
   expect(await cardOffset(page)).toBe(0);
 });
+
+test("the examples are one radio group named Try an example", async ({
+  page,
+}) => {
+  const group = page.getByRole("radiogroup", { name: "Try an example" });
+  await expect(group.getByRole("radio")).toHaveCount(4);
+});

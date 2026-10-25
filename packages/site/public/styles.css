@@ -177,21 +177,18 @@ body {
   background: var(--color-surface);
 }
 
+/*
+ * A div with role="radiogroup", not a fieldset: WebKit (Safari, and every
+ * browser on iPhone) lays out a <legend> its own way and ignores the flex gap.
+ */
 .demo__picker {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  min-width: 0;
-  margin: 0;
-  padding: 0;
-  border: 0;
 }
 
-/* A floated legend is laid out like any other child, so the fieldset's flex applies. */
 .demo__label {
-  float: left;
-  padding: 0;
   color: var(--color-muted-on-surface);
   font-size: var(--text-label);
   font-weight: 600;

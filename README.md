@@ -118,7 +118,7 @@ Your Worker also serves a small web app at its address, `https://song-resolver.<
 
 **Android.** In Chrome, open the ⋮ menu and choose **Install app** (or **Add to Home screen**). Then, from your gallery or a screenshot's preview, tap **Share** and choose **Find Song**.
 
-**iPhone.** iOS doesn't let web apps receive shares, so a Shortcut does it. The Shortcut converts the screenshot to JPEG (iPhone screenshots are HEIC), sends it to your Worker, and opens the results in Safari. [Build it in a few minutes](packages/song-resolver/shortcut/README.md); it asks nothing once it's set up. Then tap **Share** on a screenshot and choose **Find Song**.
+**iPhone.** iOS doesn't let web apps receive shares, so a Shortcut does it. The Shortcut converts the screenshot to JPEG (iPhone photos are HEIC), sends it to your Worker, and opens the results in Safari. [Add the Find Song Shortcut](https://www.icloud.com/shortcuts/02ffb86220034599b476fdafd7e493fc); it asks for your Worker URL and access token once. Then tap **Share** on a screenshot and choose **Find Song**. To see what it does, or build it yourself, follow [the steps](packages/song-resolver/shortcut/README.md).
 
 **Any device.** Open your Worker's address and choose or paste a screenshot.
 

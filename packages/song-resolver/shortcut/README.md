@@ -17,7 +17,7 @@ Open **Shortcuts**, tap **+**, and name the shortcut **Find Song**.
 
    To use these later, tap the field you're filling in and pick **Worker** or **Token** from the strip above the keyboard (or from **Variables**), then type the rest straight after it.
 
-4. **Make it a JPEG.** Add **Convert Image** and set it to convert **Shortcut Input** to **JPEG**, with quality around 0.9 and **Preserve Metadata** off. iPhone saves screenshots as HEIC, which the Worker can't read.
+4. **Make it a JPEG.** Add **Convert Image** and set it to convert **Shortcut Input** to **JPEG**, with quality around 0.9 and **Preserve Metadata** off. Screenshots are PNG, but photos and some saved images are HEIC, which the Worker can't read; JPEG also keeps the upload small.
 5. **Ask your Worker.** Add **Get Contents of URL**:
    - URL: the **Worker** variable, then type `/api/resolve` right after it
    - Method: **POST**
